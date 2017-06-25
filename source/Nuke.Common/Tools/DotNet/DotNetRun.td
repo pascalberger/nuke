@@ -9,9 +9,9 @@
   "Task": {
     "SkipAttributes": true,
     "Postfix": "Run",
+    "DefiniteArgument": "run",
     "SettingsClass": {
       "BaseClass": "DotNetSettings",
-      "DefiniteArgument": "run",
       "Properties": [
         {
           "Name": "Configuration",

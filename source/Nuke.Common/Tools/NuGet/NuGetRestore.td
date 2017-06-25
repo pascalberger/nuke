@@ -9,9 +9,9 @@
   "Task": {
     "SkipAttributes": true,
     "Postfix": "Restore",
+    "DefiniteArgument": "restore",
     "SettingsClass": {
       "BaseClass": "NuGetSettings",
-      "DefiniteArgument": "restore",
       "Properties": [
         {
           "Name": "TargetPath",

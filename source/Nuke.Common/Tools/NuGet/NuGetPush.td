@@ -9,9 +9,9 @@
   "Task": {
     "SkipAttributes": true,
     "Postfix": "Push",
+    "DefiniteArgument": "push",
     "SettingsClass": {
       "BaseClass": "NuGetSettings",
-      "DefiniteArgument": "push",
       "Properties": [
         {
           "Name": "TargetPath",

@@ -9,9 +9,9 @@
   "Task": {
     "SkipAttributes": true,
     "Postfix": "Pack",
+    "DefiniteArgument": "pack",
     "SettingsClass": {
       "BaseClass": "DotNetSettings",
-      "DefiniteArgument": "pack",
       "Properties": [
         {
           "Name": "Project",

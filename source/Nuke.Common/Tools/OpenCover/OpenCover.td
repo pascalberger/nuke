@@ -8,9 +8,9 @@
   "Task": {
     "IconClass": "shield2",
     "CustomStart": true,
+    "PackageId": "OpenCover",
+    "PackageExecutable": "OpenCover.Console.exe",
     "SettingsClass": {
-      "PackageId": "OpenCover",
-      "PackageExecutable": "OpenCover.Console.exe",
       "Properties": [
         {
           "Name": "TestAction",

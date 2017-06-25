@@ -18,7 +18,7 @@ namespace Nuke.ToolGenerator.Model
         public string IconClass { get; set; }
 
         /// <summary>
-        /// The postfix that is appended to the task method. Usually, this is some kind of subcommand.
+        /// The postfix that is appended to the task method. Usually, this is used for subcommands.
         /// </summary>
         [CanBeNull]
         public string Postfix { get; set; }
@@ -33,6 +33,41 @@ namespace Nuke.ToolGenerator.Model
         /// Otherwise, just asserts the exit code to be zero.
         /// </summary>
         public bool CustomAssertion { get; set; }
+        
+        /// <summary>
+        /// The argument that is always rendered.
+        /// </summary>
+        public string DefiniteArgument { get; set; }
+        
+        /// <summary>
+        /// NuGet package id that contains the executable.
+        /// </summary>
+        /// <remarks>
+        /// Also requires <see cref="PackageExecutable"/> to be set.
+        /// </remarks>
+        public string PackageId { get; set; }
+        /// <summary>
+        /// Name of the executable that is contained in a NuGet package.
+        /// </summary>
+        /// <remarks>
+        /// Also requires <see cref="PackageId"/> to bet set.
+        /// </remarks>
+        public string PackageExecutable { get; set; }
+
+        /// <summary>
+        /// Environment variable that holds the path to the executable.
+        /// </summary>
+        public string EnvironmentExecutable { get; set; }
+
+        /// <summary>
+        /// Defines a executable to use from PATH.
+        /// </summary>
+        public string PathExecutable { get; set; }
+
+        /// <summary>
+        /// Custom expression that returns the executable.
+        /// </summary>
+        public string CustomExecutable { get; set; }
 
         /// <summary>
         /// The related settings class.

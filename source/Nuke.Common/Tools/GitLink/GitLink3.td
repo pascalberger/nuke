@@ -8,9 +8,9 @@
   "Task": {
     "SkipAttributes": true,
     "Postfix": "3",
+    "PackageId": "gitlink",
+    "PackageExecutable": "GitLink.exe",
     "SettingsClass": {
-      "PackageId": "gitlink",
-      "PackageExecutable": "GitLink.exe",
       "Properties": [
         {
           "Name": "PdbFile",

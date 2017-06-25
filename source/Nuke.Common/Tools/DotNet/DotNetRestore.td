@@ -9,9 +9,9 @@
   "Task": {
     "IconClass": "fire",
     "Postfix": "Restore",
+    "DefiniteArgument": "restore",
     "SettingsClass": {
       "BaseClass": "DotNetSettings",
-      "DefiniteArgument": "restore",
       "Properties": [
         {
           "Name": "ProjectFile",

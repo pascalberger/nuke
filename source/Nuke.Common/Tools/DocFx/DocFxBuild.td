@@ -8,10 +8,10 @@
   "Task": {
     "IconClass": "book",
     "Postfix": "Build",
+    "DefiniteArgument": "build",
+    "PackageId": "docfx.console",
+    "PackageExecutable": "docfx.exe",
     "SettingsClass": {
-      "PackageId": "docfx.console",
-      "PackageExecutable": "docfx.exe",
-      "DefiniteArgument": "build",
       "Properties": [
         {
           "Name": "ConfigPath",

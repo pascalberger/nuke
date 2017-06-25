@@ -9,8 +9,8 @@
     "IconClass": "bug2",
     "Postfix": "2",
     "CustomAssertion": true,
+    "PackageId": "xunit.runner.console",
     "SettingsClass": {
-      "PackageId": "xunit.runner.console",
       "Properties": [
         {
           "Name": "TargetAssemblyWithConfigs",

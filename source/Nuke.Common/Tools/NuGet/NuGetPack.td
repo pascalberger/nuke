@@ -9,9 +9,9 @@
   "Task": {
     "IconClass": "box",
     "Postfix": "Pack",
+    "DefiniteArgument": "pack",
     "SettingsClass": {
       "BaseClass": "NuGetSettings",
-      "DefiniteArgument": "pack",
       "Properties": [
         {
           "Name": "TargetPath",

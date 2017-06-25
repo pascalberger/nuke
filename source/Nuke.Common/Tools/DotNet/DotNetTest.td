@@ -9,9 +9,9 @@
   "Task": {
     "SkipAttributes": true,
     "Postfix": "Test",
+    "DefiniteArgument": "test",
     "SettingsClass": {
       "BaseClass": "DotNetSettings",
-      "DefiniteArgument": "test",
       "Properties": [
         {
           "Name": "ProjectFile",

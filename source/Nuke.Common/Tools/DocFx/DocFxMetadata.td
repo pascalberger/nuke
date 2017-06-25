@@ -8,10 +8,10 @@
   "Task": {
     "SkipAttributes": true,
     "Postfix": "Metadata",
+    "DefiniteArgument": "metadata",
+    "PackageId": "docfx.console",
+    "PackageExecutable": "docfx.exe",
     "SettingsClass": {
-      "PackageId": "docfx.console",
-      "PackageExecutable": "docfx.exe",
-      "DefiniteArgument": "metadata",
       "Properties": [
         {
           "Name": "ConfigPath",

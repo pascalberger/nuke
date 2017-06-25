@@ -5,9 +5,9 @@
   "Task": {
     "IconClass": "link",
     "Postfix": "2",
+    "PackageId": "gitlink",
+    "PackageExecutable": "GitLink.exe",
     "SettingsClass": {
-      "PackageId": "gitlink",
-      "PackageExecutable": "GitLink.exe",
       "Properties": [
         {
           "Name": "SolutionDirectory",
