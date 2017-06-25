@@ -1,7 +1,6 @@
 {
   "Reference": {
     "Url": "https://docs.microsoft.com/en-us/nuget/tools/nuget-exe-cli-reference",
-    "HashCode": -1234028507,
     "XPath": ".//table[11]"
   },
   "Help": "The NuGet Command Line Interface (CLI) provides the full extent of NuGet functionality to install, create, publish, and manage packages.",

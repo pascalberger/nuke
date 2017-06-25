@@ -1,7 +1,6 @@
 {
   "Reference": {
-    "Url": "https://raw.githubusercontent.com/GitTools/GitVersion/master/docs/more-info/variables.md",
-    "HashCode": 795243132
+    "Url": "https://raw.githubusercontent.com/GitTools/GitVersion/master/docs/more-info/variables.md"
   },
   "Help": "GitVersion is a tool to help you achieve Semantic Versioning on your project.",
   "OfficialUrl": "http://gitversion.readthedocs.io/en/stable/",

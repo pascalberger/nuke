@@ -57,7 +57,6 @@ namespace Nuke.ToolGenerator
                 var referenceFile = Path.ChangeExtension(tool.File, ".reference.txt");
                 Trace.Assert(referenceFile != null, "referenceFile != null");
                 File.WriteAllText(referenceFile, reference);
-                tool.Reference.HashCode = reference.GetHashCode();
             }
             catch (Exception exception)
             {

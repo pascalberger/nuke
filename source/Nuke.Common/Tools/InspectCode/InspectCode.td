@@ -1,7 +1,6 @@
 {
   "Reference": {
     "Url": "https://www.jetbrains.com/help/resharper/InspectCode.html",
-    "HashCode": -1221302360,
     "XPath": ".//article[@class='article']"
   },
   "Help": "One of ReSharper's most notable features, code inspection, is available even without opening Visual Studio. InspectCode, a free command line tool requires a minimum of one parameter- your solution file- to apply all of ReSharper's inspections.",

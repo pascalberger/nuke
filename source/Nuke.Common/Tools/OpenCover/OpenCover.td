@@ -1,7 +1,6 @@
 {
   "Reference": {
-    "Url": "https://raw.githubusercontent.com/wiki/OpenCover/opencover/Usage.md",
-    "HashCode": -381574320
+    "Url": "https://raw.githubusercontent.com/wiki/OpenCover/opencover/Usage.md"
   },
   "Help": "OpenCover is a code coverage tool for .NET 2 and above (Windows OSs only - no MONO), with support for 32 and 64 processes and covers both branch and sequence points.",
   "OfficialUrl": "https://github.com/OpenCover/opencover",
