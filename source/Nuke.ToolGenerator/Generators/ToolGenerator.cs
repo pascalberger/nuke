@@ -38,7 +38,7 @@ namespace Nuke.ToolGenerator.Generators
             if (tool.Task?.IconClass == null)
                 return null;
 
-            return $"[assembly: IconClass(typeof({tool.GetNamespace()}.{tool.Task.GetTaskClassName()}), \"{tool.Task.IconClass}\")]";
+            return $"[assembly: IconClass(typeof({tool.GetNamespace()}.{tool.Task.GetTaskClassName()}), \"{tool.Task.NotNull().IconClass}\")]";
         }
 
         private static ToolWriter WriteAlias (this ToolWriter writer)

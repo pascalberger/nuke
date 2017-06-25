@@ -1,10 +1,16 @@
+// Copyright Matthias Koch 2017.
+// Distributed under the MIT License.
+// https://github.com/matkoch/Nuke/blob/master/LICENSE
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 
 namespace Nuke.ToolGenerator.Model
 {
+    [UsedImplicitly]
     public class DataClass
     {
         [JsonIgnore]
@@ -31,6 +37,7 @@ namespace Nuke.ToolGenerator.Model
         public List<Property> Properties { get; set; } = new List<Property>();
     }
 
+    [UsedImplicitly]
     public class SettingsClass : DataClass
     {
         public override string Name => $"{Tool.Name}{Tool.Task.Postfix}Settings";

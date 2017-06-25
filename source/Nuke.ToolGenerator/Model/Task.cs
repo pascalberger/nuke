@@ -1,11 +1,15 @@
+// Copyright Matthias Koch 2017.
+// Distributed under the MIT License.
+// https://github.com/matkoch/Nuke/blob/master/LICENSE
+
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 
 namespace Nuke.ToolGenerator.Model
 {
+    [UsedImplicitly]
     public class Task
     {
         [JsonIgnore]
@@ -13,6 +17,7 @@ namespace Nuke.ToolGenerator.Model
 
         // TODO: summary
         public bool SkipAttributes { get; set; }
+
         // TODO: summary
         [CanBeNull]
         public string IconClass { get; set; }
@@ -33,12 +38,12 @@ namespace Nuke.ToolGenerator.Model
         /// Otherwise, just asserts the exit code to be zero.
         /// </summary>
         public bool CustomAssertion { get; set; }
-        
+
         /// <summary>
         /// The argument that is always rendered.
         /// </summary>
         public string DefiniteArgument { get; set; }
-        
+
         /// <summary>
         /// NuGet package id that contains the executable.
         /// </summary>
@@ -46,6 +51,7 @@ namespace Nuke.ToolGenerator.Model
         /// Also requires <see cref="PackageExecutable"/> to be set.
         /// </remarks>
         public string PackageId { get; set; }
+
         /// <summary>
         /// Name of the executable that is contained in a NuGet package.
         /// </summary>

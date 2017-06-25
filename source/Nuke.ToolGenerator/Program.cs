@@ -19,7 +19,7 @@ using Nuke.ToolGenerator.Model;
 namespace Nuke.ToolGenerator
 {
     [SuppressMessage("ReSharper", "MissingXmlDoc")]
-    public class Program
+    public static class Program
     {
         private static void Main (string[] args)
         {

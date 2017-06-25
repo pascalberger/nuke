@@ -39,7 +39,7 @@ namespace Nuke.ToolGenerator.Generators
             if (settingsClass == null)
                 return writer;
 
-            var task = settingsClass.Tool.Task;
+            var task = settingsClass.Tool.Task.NotNull();
             var arguments = new List<string>();
             if (task.PackageId != null)
             {
@@ -169,7 +169,7 @@ namespace Nuke.ToolGenerator.Generators
         private static DataClassWriter WriteGetArgumentsInternal (this DataClassWriter writer)
         {
             var formatProperties = writer.DataClass.Properties.Where(x => x.Format != null).ToList();
-            if ((writer.DataClass as SettingsClass)?.Tool.Task.DefiniteArgument == null && formatProperties.Count == 0)
+            if ((writer.DataClass as SettingsClass)?.Tool.Task.NotNull().DefiniteArgument == null && formatProperties.Count == 0)
                 return writer;
 
             var argumentAdditions = formatProperties.Select(GetArgumentAddition).ToArray();
@@ -188,7 +188,7 @@ namespace Nuke.ToolGenerator.Generators
         private static string GetCommandAdditionOrNull (DataClass dataClass)
         {
             var settingsClass = dataClass as SettingsClass;
-            return settingsClass?.Tool.Task.DefiniteArgument != null
+            return settingsClass?.Tool.Task.NotNull().DefiniteArgument != null
                 ? $"  .Add({settingsClass.Tool.Task.DefiniteArgument.Quote(interpolation: false)})"
                 : null;
         }
