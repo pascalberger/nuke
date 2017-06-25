@@ -8,7 +8,6 @@
   "Help": "The <c>dotnet test</c> command is used to execute unit tests in a given project. Unit tests are console application projects that have dependencies on the unit test framework (for example, MSTest, NUnit, or xUnit) and the dotnet test runner for the unit testing framework. These are packaged as NuGet packages and are restored as ordinary dependencies for the project.",
   "Alias": {
     "SkipAttributes": true,
-    "TaskName": "DotNet",
     "Postfix": "Test",
     "SettingsClass": {
       "Name": "DotNetTestSettings",

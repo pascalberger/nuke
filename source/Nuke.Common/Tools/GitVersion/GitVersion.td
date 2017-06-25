@@ -7,7 +7,6 @@
   "Help": "GitVersion is a tool to help you achieve Semantic Versioning on your project.",
   "Alias": {
     "IconClass": "podium",
-    "TaskName": "GitVersion",
     "SettingsClass": {
       "PackageId": "GitVersion.CommandLine",
       "PackageExecutable": "GitVersion.exe",

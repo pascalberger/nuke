@@ -8,7 +8,6 @@
   "Help": "One of ReSharper's most notable features, code inspection, is available even without opening Visual Studio. InspectCode, a free command line tool requires a minimum of one parameter- your solution file- to apply all of ReSharper's inspections.",
   "Alias": {
     "IconClass": "code",
-    "TaskName": "InspectCode",
     "SettingsClass": {
       "PackageId": "JetBrains.ReSharper.CommandLineTools",
       "Name": "InspectCodeSettings",

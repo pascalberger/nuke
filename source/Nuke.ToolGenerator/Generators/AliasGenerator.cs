@@ -24,7 +24,7 @@ namespace Nuke.ToolGenerator.Generators
             writer
                     .WriteLineIfTrue(!alias.SkipAttributes, "[PublicAPI]")
                     .WriteLineIfTrue(!alias.SkipAttributes, "[ExcludeFromCodeCoverage]")
-                    .WriteLine($"public static partial class {alias.TaskName}Tasks")
+                    .WriteLine($"public static partial class {writer.Tool.Name}Tasks")
                     .WriteBlock(w =>
                     {
                         WritePreAndPostProcess(w);

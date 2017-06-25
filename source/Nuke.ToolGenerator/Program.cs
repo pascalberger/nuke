@@ -30,8 +30,6 @@ namespace Nuke.ToolGenerator
                 Console.WriteLine($"Processing {file}...");
 
                 var tool = Load(file);
-                
-                tool.Name = tool.Alias?.TaskName;
 
                 using (var streamWriter = new StreamWriter(File.Open(Path.ChangeExtension(tool.File, "Generated.cs"), FileMode.Create)))
                 {
@@ -46,7 +44,11 @@ namespace Nuke.ToolGenerator
         {
             var content = File.ReadAllText(file);
             var tool = JsonConvert.DeserializeObject<Tool>(content);
+            
             tool.File = file;
+            if (tool.Alias != null)
+                tool.Alias.Tool = tool;
+            
             return tool;
         }
 
