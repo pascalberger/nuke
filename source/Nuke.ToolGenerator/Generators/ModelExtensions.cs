@@ -80,7 +80,7 @@ namespace Nuke.ToolGenerator.Generators
 
         public static string GetTaskCommandMethodName(this Alias alias)
         {
-            return $"{alias.TaskName}{alias.MethodPostfix}";
+            return $"{alias.TaskName}{alias.TaskPostfix}";
         }
 
         public static string GetTaskCommandFullName(this Alias alias)

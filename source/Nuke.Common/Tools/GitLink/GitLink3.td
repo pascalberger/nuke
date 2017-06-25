@@ -7,7 +7,7 @@
   "Alias": {
     "SkipAttributes": true,
     "TaskName": "GitLink",
-    "MethodPostfix": "3",
+    "TaskPostfix": "3",
     "SettingsClass": {
       "PackageId": "gitlink",
       "PackageExecutable": "GitLink.exe",

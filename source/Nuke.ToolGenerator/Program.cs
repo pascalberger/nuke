@@ -33,7 +33,7 @@ namespace Nuke.ToolGenerator
                 var streamWriter = new StreamWriter(File.Open(Path.ChangeExtension (tool.File, "Generated.cs"), FileMode.Create));
 
                 Generators.ToolGenerator.Run(tool, streamWriter);
-                TryUpdateReference (tool);
+//                TryUpdateReference (tool);
                 Save(tool);
             }
         }
@@ -60,8 +60,8 @@ namespace Nuke.ToolGenerator
             }
             catch (Exception exception)
             {
-                Console.WriteLine("Couldn't update reference for {0}:", Path.GetFileName(tool.File));
-                Console.WriteLine(exception.Message);
+                Console.Error.WriteLine("Couldn't update reference for {0}:", Path.GetFileName(tool.File));
+                Console.Error.WriteLine(exception.Message);
             }
         }
 

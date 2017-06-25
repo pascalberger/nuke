@@ -7,7 +7,7 @@
   "Alias": {
     "IconClass": "bug2",
     "TaskName": "Xunit",
-    "MethodPostfix": "2",
+    "TaskPostfix": "2",
     "CustomAssertion": true,
     "SettingsClass": {
       "PackageId": "xunit.runner.console",

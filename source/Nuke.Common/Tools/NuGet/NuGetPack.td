@@ -8,7 +8,7 @@
   "Alias": {
     "IconClass": "box",
     "TaskName": "NuGet",
-    "MethodPostfix": "Pack",
+    "TaskPostfix": "Pack",
     "SettingsClass": {
       "Name": "NuGetPackSettings",
       "BaseClass": "NuGetSettings",

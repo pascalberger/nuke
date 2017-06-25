@@ -8,7 +8,7 @@
   "Alias": {
     "SkipAttributes": true,
     "TaskName": "DotNet",
-    "MethodPostfix": "Build",
+    "TaskPostfix": "Build",
     "SettingsClass": {
       "Name": "DotNetBuildSettings",
       "BaseClass": "DotNetSettings",

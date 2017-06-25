@@ -4,7 +4,7 @@
   "Alias": {
     "IconClass": "link",
     "TaskName": "GitLink",
-    "MethodPostfix": "2",
+    "TaskPostfix": "2",
     "SettingsClass": {
       "PackageId": "gitlink",
       "PackageExecutable": "GitLink.exe",

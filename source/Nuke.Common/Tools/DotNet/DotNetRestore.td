@@ -8,7 +8,7 @@
   "Alias": {
     "IconClass": "fire",
     "TaskName": "DotNet",
-    "MethodPostfix": "Restore",
+    "TaskPostfix": "Restore",
     "SettingsClass": {
       "Name": "DotNetRestoreSettings",
       "BaseClass": "DotNetSettings",

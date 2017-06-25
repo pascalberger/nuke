@@ -7,7 +7,7 @@
   "Alias": {
     "IconClass": "book",
     "TaskName": "DocFx",
-    "MethodPostfix": "Build",
+    "TaskPostfix": "Build",
     "SettingsClass": {
       "PackageId": "docfx.console",
       "PackageExecutable": "docfx.exe",

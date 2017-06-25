@@ -8,7 +8,7 @@
   "Alias": {
     "SkipAttributes": true,
     "TaskName": "NuGet",
-    "MethodPostfix": "Push",
+    "TaskPostfix": "Push",
     "SettingsClass": {
       "Name": "NuGetPushSettings",
       "BaseClass": "NuGetSettings",

@@ -8,7 +8,7 @@
   "Alias": {
     "SkipAttributes": true,
     "TaskName": "DotNet",
-    "MethodPostfix": "Pack",
+    "TaskPostfix": "Pack",
     "SettingsClass": {
       "Name": "DotNetPackSettings",
       "BaseClass": "DotNetSettings",

@@ -8,7 +8,7 @@
   "Alias": {
     "SkipAttributes": true,
     "TaskName": "NuGet",
-    "MethodPostfix": "Restore",
+    "TaskPostfix": "Restore",
     "SettingsClass": {
       "Name": "NuGetRestoreSettings",
       "BaseClass": "NuGetSettings",

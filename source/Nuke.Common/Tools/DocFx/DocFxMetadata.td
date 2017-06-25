@@ -7,7 +7,7 @@
   "Alias": {
     "SkipAttributes": true,
     "TaskName": "DocFx",
-    "MethodPostfix": "Metadata",
+    "TaskPostfix": "Metadata",
     "SettingsClass": {
       "PackageId": "docfx.console",
       "PackageExecutable": "docfx.exe",
