@@ -6,11 +6,17 @@ using Newtonsoft.Json;
 
 namespace Nuke.ToolGenerator.Model
 {
-    [DebuggerDisplay("{" + nameof(File) + "}")]
+    [DebuggerDisplay("{" + nameof(DefinitionFile) + "}")]
     public class Tool
     {
         [JsonIgnore]
-        public string File { get; set; }
+        public string DefinitionFile { get; set; }
+        
+        [JsonIgnore]
+        public string GenerationFile { get; set; }
+        
+        [JsonIgnore]
+        public string ReferenceFile { get; set; }
 
         public Reference Reference { get; set; }
 

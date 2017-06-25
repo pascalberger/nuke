@@ -12,7 +12,7 @@ namespace Nuke.ToolGenerator.Generators
         public static string GetNamespace (this Tool tool)
         {
             var namespaces = new Stack<string> ();
-            var directory = new FileInfo (tool.File).Directory;
+            var directory = new FileInfo (tool.GenerationFile).Directory;
             while (directory != null)
             {
                 namespaces.Push (directory.Name);
