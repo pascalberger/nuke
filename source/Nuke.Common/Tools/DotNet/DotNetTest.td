@@ -3,12 +3,13 @@
     "Url": "https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-test",
     "XPath": ".//div[@class='content']"
   },
-  "Help": "The <c>dotnet test</c> command is used to execute unit tests in a given project. Unit tests are console application projects that have dependencies on the unit test framework (for example, MSTest, NUnit, or xUnit) and the dotnet test runner for the unit testing framework. These are packaged as NuGet packages and are restored as ordinary dependencies for the project.",
+  "Name": "DotNet",
   "OfficialUrl": "https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-run",
+  "Help": "The <c>dotnet test</c> command is used to execute unit tests in a given project. Unit tests are console application projects that have dependencies on the unit test framework (for example, MSTest, NUnit, or xUnit) and the dotnet test runner for the unit testing framework. These are packaged as NuGet packages and are restored as ordinary dependencies for the project.",
   "Alias": {
     "SkipAttributes": true,
     "TaskName": "DotNet",
-    "TaskPostfix": "Test",
+    "Postfix": "Test",
     "SettingsClass": {
       "Name": "DotNetTestSettings",
       "BaseClass": "DotNetSettings",

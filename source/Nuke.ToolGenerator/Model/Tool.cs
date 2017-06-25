@@ -1,24 +1,23 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Newtonsoft.Json;
 
 namespace Nuke.ToolGenerator.Model
 {
+    [DebuggerDisplay("{" + nameof(File) + "}")]
     public class Tool
     {
         [JsonIgnore]
         public string File { get; set; }
 
         public Reference Reference { get; set; }
-        
+
         /// <summary>
-        /// The brief help text, best taken from the project website.
+        /// The name of the tool.
         /// </summary>
-        /// <remarks>
-        /// This help text is copied to all involved top-level members.
-        /// </remarks>
-        public string Help { get; set; }
+        public string Name { get; set; }
         
         /// <summary>
         /// The url to the tool's offical website.
@@ -28,6 +27,14 @@ namespace Nuke.ToolGenerator.Model
         /// </remarks>
         public string OfficialUrl { get; set; }
         
+        /// <summary>
+        /// The brief help text, best taken from the project website.
+        /// </summary>
+        /// <remarks>
+        /// This help text is copied to all involved top-level members.
+        /// </remarks>
+        public string Help { get; set; }
+
         /// <summary>
         /// The alias.
         /// </summary>
@@ -41,10 +48,5 @@ namespace Nuke.ToolGenerator.Model
         /// The list of enumerations.
         /// </summary>
         public List<Enumeration> Enumerations { get; set; } = new List<Enumeration>();
-
-        public override string ToString ()
-        {
-            return File;
-        }
     }
 }

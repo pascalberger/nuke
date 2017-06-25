@@ -2,8 +2,9 @@
   "Reference": {
     "Url": "https://raw.githubusercontent.com/GitTools/GitVersion/master/docs/more-info/variables.md"
   },
-  "Help": "GitVersion is a tool to help you achieve Semantic Versioning on your project.",
+  "Name": "GitVersion",
   "OfficialUrl": "http://gitversion.readthedocs.io/en/stable/",
+  "Help": "GitVersion is a tool to help you achieve Semantic Versioning on your project.",
   "Alias": {
     "IconClass": "podium",
     "TaskName": "GitVersion",

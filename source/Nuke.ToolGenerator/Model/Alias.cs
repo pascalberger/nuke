@@ -24,7 +24,8 @@ namespace Nuke.ToolGenerator.Model
         /// <summary>
         /// The postfix that is appended to the task method. Usually, this is some kind of subcommand.
         /// </summary>
-        public string TaskPostfix { get; set; }
+        [CanBeNull]
+        public string Postfix { get; set; }
 
         /// <summary>
         /// If set to <c>true</c>, will generate a call to <c>StartProcess</c> which needs to be implemented in a partial class definition  .

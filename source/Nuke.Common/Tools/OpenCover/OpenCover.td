@@ -2,8 +2,9 @@
   "Reference": {
     "Url": "https://raw.githubusercontent.com/wiki/OpenCover/opencover/Usage.md"
   },
-  "Help": "OpenCover is a code coverage tool for .NET 2 and above (Windows OSs only - no MONO), with support for 32 and 64 processes and covers both branch and sequence points.",
+  "Name": "OpenCover",
   "OfficialUrl": "https://github.com/OpenCover/opencover",
+  "Help": "OpenCover is a code coverage tool for .NET 2 and above (Windows OSs only - no MONO), with support for 32 and 64 processes and covers both branch and sequence points.",
   "Alias": {
     "IconClass": "shield2",
     "TaskName": "OpenCover",

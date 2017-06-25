@@ -30,10 +30,14 @@ namespace Nuke.ToolGenerator
                 Console.WriteLine($"Processing {file}...");
 
                 var tool = Load(file);
-                var streamWriter = new StreamWriter(File.Open(Path.ChangeExtension (tool.File, "Generated.cs"), FileMode.Create));
+                
+                tool.Name = tool.Alias?.TaskName;
 
-                Generators.ToolGenerator.Run(tool, streamWriter);
-//                TryUpdateReference (tool);
+                using (var streamWriter = new StreamWriter(File.Open(Path.ChangeExtension(tool.File, "Generated.cs"), FileMode.Create)))
+                {
+                    Generators.ToolGenerator.Run(tool, streamWriter);
+                }
+                //TryUpdateReference (tool);
                 Save(tool);
             }
         }

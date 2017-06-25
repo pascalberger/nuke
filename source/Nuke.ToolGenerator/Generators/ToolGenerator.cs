@@ -54,7 +54,7 @@ namespace Nuke.ToolGenerator.Generators
                 dataClasses.Insert(index: 0, item: writer.Tool.Alias.SettingsClass);
 
             dataClasses.ForEach(x => DataClassGenerator.Run(x, writer));
-            dataClasses.Where(x => !x.NoExtensionMethods).ForEach(x => DataClassExtensionGenerator.Run(x, writer));
+            dataClasses.Where(x => !x.SkipExtensionMethods).ForEach(x => DataClassExtensionGenerator.Run(x, writer));
             return writer;
         }
 
