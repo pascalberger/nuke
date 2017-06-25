@@ -36,9 +36,9 @@ namespace Nuke.ToolGenerator.Model
         public string Help { get; set; }
 
         /// <summary>
-        /// The alias.
+        /// The task.
         /// </summary>
-        public Alias Alias { get; set; }
+        public Task Task { get; set; }
 
         /// <summary>
         /// The list of data classes.

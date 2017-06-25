@@ -13,31 +13,31 @@ using Nuke.ToolGenerator.Writers;
 
 namespace Nuke.ToolGenerator.Generators
 {
-    public static class AliasGenerator
+    public static class TaskGenerator
     {
-        public static void Run ([CanBeNull] Alias alias, ToolWriter toolWriter)
+        public static void Run ([CanBeNull] Task task, ToolWriter toolWriter)
         {
-            if (alias == null)
+            if (task == null)
                 return;
 
-            var writer = new AliasWriter(alias, toolWriter);
+            var writer = new TaskWriter(task, toolWriter);
             writer
-                    .WriteLineIfTrue(!alias.SkipAttributes, "[PublicAPI]")
-                    .WriteLineIfTrue(!alias.SkipAttributes, "[ExcludeFromCodeCoverage]")
+                    .WriteLineIfTrue(!task.SkipAttributes, "[PublicAPI]")
+                    .WriteLineIfTrue(!task.SkipAttributes, "[ExcludeFromCodeCoverage]")
                     .WriteLine($"public static partial class {writer.Tool.Name}Tasks")
                     .WriteBlock(w =>
                     {
                         WritePreAndPostProcess(w);
-                        WriteMainAlias(w);
-                        WriteAliasOverloads(w);
+                        WriteMainTask(w);
+                        WriteTaskOverloads(w);
                     });
         }
 
-        private static AliasWriter WriteAliasOverloads (AliasWriter writer, int index = 0)
+        private static TaskWriter WriteTaskOverloads (TaskWriter writer, int index = 0)
         {
-            var alias = writer.Alias;
-            var settingsClass = alias.SettingsClass;
-            var properties = alias.SettingsClass.Properties.Where(x => x.CreateOverload).Take(index + 1).ToList();
+            var task = writer.Task;
+            var settingsClass = task.SettingsClass;
+            var properties = task.SettingsClass.Properties.Where(x => x.CreateOverload).Take(index + 1).ToList();
 
             if (properties.Count == 0 || index >= properties.Count)
                 return writer;
@@ -51,25 +51,25 @@ namespace Nuke.ToolGenerator.Generators
 
             writer
                     .WriteSummary(writer.Tool)
-                    .WriteLine(GetAliasSignature(writer.Alias, additionalParameterDeclarations))
+                    .WriteLine(GetTaskSignature(writer.Task, additionalParameterDeclarations))
                     .WriteBlock(w => w
                             .WriteLine("configurator = configurator ?? (x => x);")
-                            .WriteLine($"{alias.GetTaskCommandMethodName()}({allArguments.Join()});"));
+                            .WriteLine($"{task.GetTaskMethodName()}({allArguments.Join()});"));
 
-            return WriteAliasOverloads(writer, index + 1);
+            return WriteTaskOverloads(writer, index + 1);
         }
 
-        private static AliasWriter WriteMainAlias (this AliasWriter writer)
+        private static TaskWriter WriteMainTask (this TaskWriter writer)
         {
             return writer
                     .WriteSummary(writer.Tool)
-                    .WriteLine(GetAliasSignature(writer.Alias))
-                    .WriteBlock(WriteMainAliasBlock);
+                    .WriteLine(GetTaskSignature(writer.Task))
+                    .WriteBlock(WriteMainTaskBlock);
         }
 
-        private static string GetAliasSignature (Alias alias, IEnumerable<string> additionalParameterDeclarations = null)
+        private static string GetTaskSignature (Task task, IEnumerable<string> additionalParameterDeclarations = null)
         {
-            var className = alias.SettingsClass.Name;
+            var className = task.SettingsClass.Name;
             var parameterDeclarations =
                     (additionalParameterDeclarations ?? Enumerable.Empty<string>())
                     .Concat(new[]
@@ -78,12 +78,12 @@ namespace Nuke.ToolGenerator.Generators
                                 "ProcessSettings processSettings = null"
                             });
 
-            return $"public static void {alias.GetTaskCommandMethodName()} ({parameterDeclarations.Join()})";
+            return $"public static void {task.GetTaskMethodName()} ({parameterDeclarations.Join()})";
         }
 
-        private static void WriteMainAliasBlock (AliasWriter writer)
+        private static void WriteMainTaskBlock (TaskWriter writer)
         {
-            var settingsClass = writer.Alias.SettingsClass.Name;
+            var settingsClass = writer.Task.SettingsClass.Name;
             var settingsClassInstance = settingsClass.ToInstance();
 
             writer
@@ -91,28 +91,28 @@ namespace Nuke.ToolGenerator.Generators
                     .WriteLine($"var {settingsClassInstance} = new {settingsClass}();")
                     .WriteLine($"{settingsClassInstance} = configurator({settingsClassInstance});")
                     .WriteLine($"PreProcess({settingsClassInstance});")
-                    .WriteLine($"var process = {GetProcessStart(writer.Alias)};")
-                    .WriteLine(GetProcessAssertion(writer.Alias))
+                    .WriteLine($"var process = {GetProcessStart(writer.Task)};")
+                    .WriteLine(GetProcessAssertion(writer.Task))
                     .WriteLine($"PostProcess({settingsClassInstance});");
         }
 
-        public static string GetProcessStart(Alias alias)
+        public static string GetProcessStart(Task task)
         {
-            return !alias.CustomStart
-                ? $"ProcessTasks.StartProcess({alias.SettingsClass.Name.ToInstance()}, processSettings)"
-                : $"StartProcess({alias.SettingsClass.Name.ToInstance()}, processSettings)";
+            return !task.CustomStart
+                ? $"ProcessTasks.StartProcess({task.SettingsClass.Name.ToInstance()}, processSettings)"
+                : $"StartProcess({task.SettingsClass.Name.ToInstance()}, processSettings)";
         }
 
-        public static string GetProcessAssertion (Alias alias)
+        public static string GetProcessAssertion (Task task)
         {
-            return !alias.CustomAssertion
+            return !task.CustomAssertion
                 ? "process.AssertZeroExitCode();"
-                : $"AssertProcess(process, {alias.SettingsClass.Name.ToInstance()});";
+                : $"AssertProcess(process, {task.SettingsClass.Name.ToInstance()});";
         }
 
-        private static AliasWriter WritePreAndPostProcess (this AliasWriter writer)
+        private static TaskWriter WritePreAndPostProcess (this TaskWriter writer)
         {
-            var settingsClass = writer.Alias.SettingsClass.Name;
+            var settingsClass = writer.Task.SettingsClass.Name;
             return writer
                     .WriteLine($"static partial void PreProcess ({settingsClass} {settingsClass.ToInstance()});")
                     .WriteLine($"static partial void PostProcess ({settingsClass} {settingsClass.ToInstance()});");

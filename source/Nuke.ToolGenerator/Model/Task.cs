@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace Nuke.ToolGenerator.Model
 {
-    public class Alias
+    public class Task
     {
         [JsonIgnore]
         public Tool Tool { get; set; }

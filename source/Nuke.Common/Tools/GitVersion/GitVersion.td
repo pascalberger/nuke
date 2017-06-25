@@ -5,7 +5,7 @@
   "Name": "GitVersion",
   "OfficialUrl": "http://gitversion.readthedocs.io/en/stable/",
   "Help": "GitVersion is a tool to help you achieve Semantic Versioning on your project.",
-  "Alias": {
+  "Task": {
     "IconClass": "podium",
     "SettingsClass": {
       "PackageId": "GitVersion.CommandLine",

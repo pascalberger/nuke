@@ -6,7 +6,7 @@
   "Name": "NuGet",
   "OfficialUrl": "https://docs.microsoft.com/en-us/nuget/tools/nuget-exe-cli-reference",
   "Help": "The NuGet Command Line Interface (CLI) provides the full extent of NuGet functionality to install, create, publish, and manage packages.",
-  "Alias": {
+  "Task": {
     "SkipAttributes": true,
     "Postfix": "Push",
     "SettingsClass": {

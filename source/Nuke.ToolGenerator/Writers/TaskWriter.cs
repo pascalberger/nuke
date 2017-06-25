@@ -4,17 +4,17 @@ using Nuke.ToolGenerator.Model;
 
 namespace Nuke.ToolGenerator.Writers
 {
-    public class AliasWriter : IWriterWrapper
+    public class TaskWriter : IWriterWrapper
     {
-        public AliasWriter (Alias alias, ToolWriter toolWriter)
+        public TaskWriter (Task task, ToolWriter toolWriter)
         {
             Tool = toolWriter.Tool;
-            Alias = alias;
+            Task = task;
             Writer = toolWriter;
         }
 
         public Tool Tool { get; }
-        public Alias Alias { get; }
+        public Task Task { get; }
         public IWriter Writer { get; }
     }
 }

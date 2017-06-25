@@ -46,9 +46,9 @@ namespace Nuke.ToolGenerator
             var tool = JsonConvert.DeserializeObject<Tool>(content);
             
             tool.File = file;
-            if (tool.Alias != null)
+            if (tool.Task != null)
             {
-                tool.Alias.Tool = tool;
+                tool.Task.Tool = tool;
             }
 
             return tool;

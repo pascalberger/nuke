@@ -73,19 +73,14 @@ namespace Nuke.ToolGenerator.Generators
             return isOptional ? "[CanBeNull] " : string.Empty;
         }
 
-        public static string GetTaskClassName(this Alias alias)
+        public static string GetTaskClassName(this Task task)
         {
-            return $"{alias.Tool.Name}Tasks";
+            return $"{task.Tool.Name}Tasks";
         }
 
-        public static string GetTaskCommandMethodName(this Alias alias)
+        public static string GetTaskMethodName(this Task task)
         {
-            return $"{alias.Tool.Name}{alias.Postfix}";
-        }
-
-        public static string GetTaskCommandFullName(this Alias alias)
-        {
-            return $"{alias.GetTaskClassName()}.{alias.GetTaskCommandMethodName()}";
+            return $"{task.Tool.Name}{task.Postfix}";
         }
     }
 }
