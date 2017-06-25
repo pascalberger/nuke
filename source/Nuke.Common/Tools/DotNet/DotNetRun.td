@@ -9,33 +9,32 @@
     "SkipAttributes": true,
     "TaskName": "DotNet",
     "MethodPostfix": "Run",
-    "SettingsClass": "DotNetRunSettings",
+    "SettingsClass": {
+      "Name": "DotNetRunSettings",
+      "BaseClass": "DotNetSettings",
+      "DefiniteArgument": "run",
+      "Properties": [
+        {
+          "Name": "Configuration",
+          "Type": "string",
+          "Format": "--configuration {value}",
+          "Help": "Configuration to use for building the project. The default value is Debug."
+        },
+        {
+          "Name": "Framework",
+          "Type": "string",
+          "Format": "--framework {value}",
+          "Help": "Builds and runs the app using the specified framework. The framework must be specified in the project file."
+        },
+        {
+          "Name": "ProjectFile",
+          "Type": "string",
+          "Format": "--project {value}",
+          "Help": "Specifies the path and name of the project file. (See the NOTE.) It defaults to the current directory if not specified."
+        }
+      ]
+    },
     "OverloadArguments": []
-  },
-  "SettingsClass": {
-    "Name": "DotNetRunSettings",
-    "BaseClass": "DotNetSettings",
-    "DefiniteArgument": "run",
-    "Properties": [
-      {
-        "Name": "Configuration",
-        "Type": "string",
-        "Format": "--configuration {value}",
-        "Help": "Configuration to use for building the project. The default value is Debug."
-      },
-      {
-        "Name": "Framework",
-        "Type": "string",
-        "Format": "--framework {value}",
-        "Help": "Builds and runs the app using the specified framework. The framework must be specified in the project file."
-      },
-      {
-        "Name": "ProjectFile",
-        "Type": "string",
-        "Format": "--project {value}",
-        "Help": "Specifies the path and name of the project file. (See the NOTE.) It defaults to the current directory if not specified."
-      }
-    ]
   },
   "DataClasses": [],
   "Enumerations": []

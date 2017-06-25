@@ -7,20 +7,19 @@
   "Alias": {
     "IconClass": "podium",
     "TaskName": "GitVersion",
-    "SettingsClass": "GitVersionSettings",
+    "SettingsClass": {
+      "PackageId": "GitVersion.CommandLine",
+      "PackageExecutable": "GitVersion.exe",
+      "Name": "GitVersionSettings",
+      "Properties": [
+        {
+          "Name": "UpdateAssemblyInfo",
+          "Type": "bool",
+          "Format": "/updateassemblyinfo"
+        }
+      ]
+    },
     "OverloadArguments": []
-  },
-  "SettingsClass": {
-    "PackageId": "GitVersion.CommandLine",
-    "PackageExecutable": "GitVersion.exe",
-    "Name": "GitVersionSettings",
-    "Properties": [
-      {
-        "Name": "UpdateAssemblyInfo",
-        "Type": "bool",
-        "Format": "/updateassemblyinfo"
-      }
-    ]
   },
   "DataClasses": [],
   "Enumerations": []

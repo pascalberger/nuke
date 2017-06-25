@@ -40,7 +40,7 @@ namespace Nuke.ToolGenerator.Generators
             if (index == alias.OverloadArguments.Count)
                 return writer;
 
-            var settingsClass = writer.Tool.SettingsClass;
+            var settingsClass = alias.SettingsClass;
             var properties = alias.OverloadArguments.Take(index + 1).Select(x => settingsClass.Properties.Single(y => y.Name == x)).ToList();
             var additionalParameterDeclarations = properties.Select(x => $"{x.GetNullabilityAttribute()}{x.Type} {x.Name.ToInstance()}");
 
@@ -70,7 +70,7 @@ namespace Nuke.ToolGenerator.Generators
 
         private static string GetAliasSignature (Alias alias, IEnumerable<string> additionalParameterDeclarations = null)
         {
-            var className = alias.SettingsClass;
+            var className = alias.SettingsClass.Name;
             var parameterDeclarations =
                     (additionalParameterDeclarations ?? Enumerable.Empty<string>())
                     .Concat(new[]
@@ -84,7 +84,7 @@ namespace Nuke.ToolGenerator.Generators
 
         private static void WriteMainAliasBlock (AliasWriter writer)
         {
-            var settingsClass = writer.Alias.SettingsClass;
+            var settingsClass = writer.Alias.SettingsClass.Name;
             var settingsClassInstance = settingsClass.ToInstance();
 
             writer
@@ -100,20 +100,20 @@ namespace Nuke.ToolGenerator.Generators
         public static string GetProcessStart(Alias alias)
         {
             return !alias.CustomStart
-                ? $"ProcessTasks.StartProcess({alias.SettingsClass.ToInstance()}, processSettings)"
-                : $"StartProcess({alias.SettingsClass.ToInstance()}, processSettings)";
+                ? $"ProcessTasks.StartProcess({alias.SettingsClass.Name.ToInstance()}, processSettings)"
+                : $"StartProcess({alias.SettingsClass.Name.ToInstance()}, processSettings)";
         }
 
         public static string GetProcessAssertion (Alias alias)
         {
             return !alias.CustomAssertion
                 ? "process.AssertZeroExitCode();"
-                : $"AssertProcess(process, {alias.SettingsClass.ToInstance()});";
+                : $"AssertProcess(process, {alias.SettingsClass.Name.ToInstance()});";
         }
 
         private static AliasWriter WritePreAndPostProcess (this AliasWriter writer)
         {
-            var settingsClass = writer.Alias.SettingsClass;
+            var settingsClass = writer.Alias.SettingsClass.Name;
             return writer
                     .WriteLine($"static partial void PreProcess ({settingsClass} {settingsClass.ToInstance()});")
                     .WriteLine($"static partial void PostProcess ({settingsClass} {settingsClass.ToInstance()});");

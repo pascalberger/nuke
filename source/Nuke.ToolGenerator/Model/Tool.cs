@@ -34,11 +34,6 @@ namespace Nuke.ToolGenerator.Model
         public Alias Alias { get; set; }
 
         /// <summary>
-        /// The settings class.
-        /// </summary>
-        public SettingsClass SettingsClass { get; set; }
-
-        /// <summary>
         /// The list of data classes.
         /// </summary>
         public List<DataClass> DataClasses { get; set; } = new List<DataClass>();

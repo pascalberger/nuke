@@ -9,70 +9,69 @@
     "SkipAttributes": true,
     "TaskName": "DotNet",
     "MethodPostfix": "Build",
-    "SettingsClass": "DotNetBuildSettings",
+    "SettingsClass": {
+      "Name": "DotNetBuildSettings",
+      "BaseClass": "DotNetSettings",
+      "DefiniteArgument": "build",
+      "Properties": [
+        {
+          "Name": "ProjectFile",
+          "Type": "string",
+          "Format": "{value}",
+          "Help": "The project file to build. If a project file is not specified, MSBuild searches the current working directory for a file that has a file extension that ends in proj and uses that file."
+        },
+        {
+          "Name": "OutputDirectory",
+          "Type": "string",
+          "Format": "--output {value}",
+          "Help": "Directory in which to place the built binaries. You also need to define <c>--framework</c> when you specify this option."
+        },
+        {
+          "Name": "Framework",
+          "Type": "string",
+          "Format": "--framework {value}",
+          "Help": "Compiles for a specific <a href=\"https://docs.microsoft.com/en-us/dotnet/standard/frameworks\">framework</a>. The framework must be defined in the <a href=\"https://docs.microsoft.com/en-us/dotnet/core/tools/csproj\">project file</a>."
+        },
+        {
+          "Name": "Configuration",
+          "Type": "string",
+          "Format": "--configuration {value}",
+          "Help": "Defines the build configuration. If omitted, the build configuration defaults to <c>Debug</c>. Use <c>Release</c> build a Release configuration."
+        },
+        {
+          "Name": "Runtime",
+          "Type": "string",
+          "Format": "--runtime {value}",
+          "Help": "Specifies the target runtime. For a list of Runtime Identifiers (RIDs), see the <a href=\"https://docs.microsoft.com/en-us/dotnet/core/rid-catalog\">RID catalog</a>."
+        },
+        {
+          "Name": "VersionSuffix",
+          "Type": "string",
+          "Format": "--version-suffix {value}",
+          "Help": "Defines the version suffix for an asterisk (<c>*</c>) in the version field of the project file. The format follows NuGet's version guidelines."
+        },
+        {
+          "Name": "NoIncremental",
+          "Type": "bool",
+          "Format": "--no-incremental",
+          "Help": "Marks the build as unsafe for incremental build. This turns off incremental compilation and forces a clean rebuild of the project's dependency graph."
+        },
+        {
+          "Name": "NoDependencies",
+          "Type": "bool",
+          "Format": "--no-dependencies",
+          "Help": "Ignores project-to-project (P2P) references and only builds the root project specified to build."
+        },
+        {
+          "Name": "Verbosity",
+          "Type": "DotNetVerbosity?",
+          "Format": "--verbosity {value}",
+          "Help": "Sets the verbosity level of the command. Allowed values are <c>q[uiet]</c>, <c>m[inimal]</c>, <c>n[ormal]</c>, <c>d[etailed]</c>, and <c>diag[nostic]</c>."
+        }
+      ]
+    },
     "OverloadArguments": [
       "ProjectFile"
-    ]
-  },
-  "SettingsClass": {
-    "Name": "DotNetBuildSettings",
-    "BaseClass": "DotNetSettings",
-    "DefiniteArgument": "build",
-    "Properties": [
-      {
-        "Name": "ProjectFile",
-        "Type": "string",
-        "Format": "{value}",
-        "Help": "The project file to build. If a project file is not specified, MSBuild searches the current working directory for a file that has a file extension that ends in proj and uses that file."
-      },
-      {
-        "Name": "OutputDirectory",
-        "Type": "string",
-        "Format": "--output {value}",
-        "Help": "Directory in which to place the built binaries. You also need to define <c>--framework</c> when you specify this option."
-      },
-      {
-        "Name": "Framework",
-        "Type": "string",
-        "Format": "--framework {value}",
-        "Help": "Compiles for a specific <a href=\"https://docs.microsoft.com/en-us/dotnet/standard/frameworks\">framework</a>. The framework must be defined in the <a href=\"https://docs.microsoft.com/en-us/dotnet/core/tools/csproj\">project file</a>."
-      },
-      {
-        "Name": "Configuration",
-        "Type": "string",
-        "Format": "--configuration {value}",
-        "Help": "Defines the build configuration. If omitted, the build configuration defaults to <c>Debug</c>. Use <c>Release</c> build a Release configuration."
-      },
-      {
-        "Name": "Runtime",
-        "Type": "string",
-        "Format": "--runtime {value}",
-        "Help": "Specifies the target runtime. For a list of Runtime Identifiers (RIDs), see the <a href=\"https://docs.microsoft.com/en-us/dotnet/core/rid-catalog\">RID catalog</a>."
-      },
-      {
-        "Name": "VersionSuffix",
-        "Type": "string",
-        "Format": "--version-suffix {value}",
-        "Help": "Defines the version suffix for an asterisk (<c>*</c>) in the version field of the project file. The format follows NuGet's version guidelines."
-      },
-      {
-        "Name": "NoIncremental",
-        "Type": "bool",
-        "Format": "--no-incremental",
-        "Help": "Marks the build as unsafe for incremental build. This turns off incremental compilation and forces a clean rebuild of the project's dependency graph."
-      },
-      {
-        "Name": "NoDependencies",
-        "Type": "bool",
-        "Format": "--no-dependencies",
-        "Help": "Ignores project-to-project (P2P) references and only builds the root project specified to build."
-      },
-      {
-        "Name": "Verbosity",
-        "Type": "DotNetVerbosity?",
-        "Format": "--verbosity {value}",
-        "Help": "Sets the verbosity level of the command. Allowed values are <c>q[uiet]</c>, <c>m[inimal]</c>, <c>n[ormal]</c>, <c>d[etailed]</c>, and <c>diag[nostic]</c>."
-      }
     ]
   },
   "DataClasses": [],

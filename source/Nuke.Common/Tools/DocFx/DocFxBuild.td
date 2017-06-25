@@ -8,56 +8,55 @@
     "IconClass": "book",
     "TaskName": "DocFx",
     "MethodPostfix": "Build",
-    "SettingsClass": "DocFxBuildSettings",
+    "SettingsClass": {
+      "PackageId": "docfx.console",
+      "PackageExecutable": "docfx.exe",
+      "Name": "DocFxBuildSettings",
+      "DefiniteArgument": "build",
+      "Properties": [
+        {
+          "Name": "ConfigPath",
+          "Type": "string",
+          "Assertion": "FileOrNull",
+          "Format": "{value}",
+          "Help": "Path to the docfx.json configuration file."
+        },
+        {
+          "Name": "Force",
+          "Type": "bool",
+          "Format": "--force",
+          "Help": "Force re-generate all the metadata."
+        },
+        {
+          "Name": "RepositoryRoot",
+          "Type": "string",
+          "Assertion": "DirectoryOrNull",
+          "Format": "--repositoryRoot {value}",
+          "Help": "Specify the GIT repository root folder."
+        },
+        {
+          "Name": "Theme",
+          "Type": "string",
+          "Assertion": "DirectoryOrNull",
+          "Format": "--theme {value}",
+          "Help": "Specify which theme to use. By default 'default' theme is offered."
+        },
+        {
+          "Name": "LogFile",
+          "Type": "string",
+          "Format": "--log {value}",
+          "Help": "Specify the file name to save processing log."
+        },
+        {
+          "Name": "LogLevel",
+          "Type": "DocFxLogLevel?",
+          "Format": "--logLevel {value}",
+          "Help": "Specify to which log level will be logged. By default log level &gt;= Info will be logged. The acceptable value could be Verbose, Info, Warning, Error."
+        }
+      ]
+    },
     "OverloadArguments": [
       "ConfigPath"
-    ]
-  },
-  "SettingsClass": {
-    "PackageId": "docfx.console",
-    "PackageExecutable": "docfx.exe",
-    "Name": "DocFxBuildSettings",
-    "DefiniteArgument": "build",
-    "Properties": [
-      {
-        "Name": "ConfigPath",
-        "Type": "string",
-        "Assertion": "FileOrNull",
-        "Format": "{value}",
-        "Help": "Path to the docfx.json configuration file."
-      },
-      {
-        "Name": "Force",
-        "Type": "bool",
-        "Format": "--force",
-        "Help": "Force re-generate all the metadata."
-      },
-      {
-        "Name": "RepositoryRoot",
-        "Type": "string",
-        "Assertion": "DirectoryOrNull",
-        "Format": "--repositoryRoot {value}",
-        "Help": "Specify the GIT repository root folder."
-      },
-      {
-        "Name": "Theme",
-        "Type": "string",
-        "Assertion": "DirectoryOrNull",
-        "Format": "--theme {value}",
-        "Help": "Specify which theme to use. By default 'default' theme is offered."
-      },
-      {
-        "Name": "LogFile",
-        "Type": "string",
-        "Format": "--log {value}",
-        "Help": "Specify the file name to save processing log."
-      },
-      {
-        "Name": "LogLevel",
-        "Type": "DocFxLogLevel?",
-        "Format": "--logLevel {value}",
-        "Help": "Specify to which log level will be logged. By default log level &gt;= Info will be logged. The acceptable value could be Verbose, Info, Warning, Error."
-      }
     ]
   },
   "DataClasses": [],

@@ -50,8 +50,8 @@ namespace Nuke.ToolGenerator.Generators
         private static ToolWriter WriteDataClasses (this ToolWriter writer)
         {
             var dataClasses = writer.Tool.DataClasses.ToList();
-            if (writer.Tool.SettingsClass != null)
-                dataClasses.Insert(index: 0, item: writer.Tool.SettingsClass);
+            if (writer.Tool.Alias?.SettingsClass != null)
+                dataClasses.Insert(index: 0, item: writer.Tool.Alias.SettingsClass);
 
             dataClasses.ForEach(x => DataClassGenerator.Run(x, writer));
             dataClasses.Where(x => !x.NoExtensionMethods).ForEach(x => DataClassExtensionGenerator.Run(x, writer));

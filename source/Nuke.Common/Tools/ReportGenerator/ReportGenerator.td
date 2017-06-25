@@ -7,67 +7,66 @@
   "Alias": {
     "IconClass": "flag3",
     "TaskName": "ReportGenerator",
-    "SettingsClass": "ReportGeneratorSettings",
+    "SettingsClass": {
+      "PackageId": "ReportGenerator",
+      "PackageExecutable": "ReportGenerator.exe",
+      "Name": "ReportGeneratorSettings",
+      "Properties": [
+        {
+          "Name": "Reports",
+          "Type": "List<string>",
+          "Format": "-reports:{value}",
+          "MainSeparator": ";",
+          "Help": "The coverage reports that should be parsed (separated by semicolon). Wildcards are allowed."
+        },
+        {
+          "Name": "TargetDirectory",
+          "Type": "string",
+          "Format": "-targetdir:{value}",
+          "Help": "The directory where the generated report should be saved."
+        },
+        {
+          "Name": "ReportTypes",
+          "Type": "ReportTypes?",
+          "Format": "-reporttypes:{value}",
+          "Help": "The output formats and scope (separated by semicolon). Default is Html."
+        },
+        {
+          "Name": "SourceDirectories",
+          "Type": "List<string>",
+          "Format": "-sourcedirs:{value}",
+          "MainSeparator": ";",
+          "Help": "Optional directories which contain the corresponding source code (separated by semicolon). The source files are used if coverage report contains classes without path information."
+        },
+        {
+          "Name": "HistoryDirectory",
+          "Type": "string",
+          "Format": "-historydir:{value}",
+          "Help": "Optional directory for storing persistent coverage information. Can be used in future reports to show coverage evolution."
+        },
+        {
+          "Name": "AssemblyFilters",
+          "Type": "List<string>",
+          "Format": "-assemblyfilters:{value}",
+          "MainSeparator": " ",
+          "Help": "Optional list of assemblies that should be included or excluded in the report. Default is +*."
+        },
+        {
+          "Name": "ClassFilters",
+          "Type": "List<string>",
+          "Format": "-classfilters:{value}",
+          "MainSeparator": " ",
+          "Help": "Optional list of classes that should be included or excluded in the report. Exclusion filters take precedence over inclusion filters. Wildcards are allowed. Default is +*."
+        },
+        {
+          "Name": "Verbosity",
+          "Type": "ReportGeneratorVerbosity?",
+          "Format": "-verbosity:{value}",
+          "Help": "The verbosity level of the log messages. Default is Verbose."
+        }
+      ]
+    },
     "OverloadArguments": []
-  },
-  "SettingsClass": {
-    "PackageId": "ReportGenerator",
-    "PackageExecutable": "ReportGenerator.exe",
-    "Name": "ReportGeneratorSettings",
-    "Properties": [
-      {
-        "Name": "Reports",
-        "Type": "List<string>",
-        "Format": "-reports:{value}",
-        "MainSeparator": ";",
-        "Help": "The coverage reports that should be parsed (separated by semicolon). Wildcards are allowed."
-      },
-      {
-        "Name": "TargetDirectory",
-        "Type": "string",
-        "Format": "-targetdir:{value}",
-        "Help": "The directory where the generated report should be saved."
-      },
-      {
-        "Name": "ReportTypes",
-        "Type": "ReportTypes?",
-        "Format": "-reporttypes:{value}",
-        "Help": "The output formats and scope (separated by semicolon). Default is Html."
-      },
-      {
-        "Name": "SourceDirectories",
-        "Type": "List<string>",
-        "Format": "-sourcedirs:{value}",
-        "MainSeparator": ";",
-        "Help": "Optional directories which contain the corresponding source code (separated by semicolon). The source files are used if coverage report contains classes without path information."
-      },
-      {
-        "Name": "HistoryDirectory",
-        "Type": "string",
-        "Format": "-historydir:{value}",
-        "Help": "Optional directory for storing persistent coverage information. Can be used in future reports to show coverage evolution."
-      },
-      {
-        "Name": "AssemblyFilters",
-        "Type": "List<string>",
-        "Format": "-assemblyfilters:{value}",
-        "MainSeparator": " ",
-        "Help": "Optional list of assemblies that should be included or excluded in the report. Default is +*."
-      },
-      {
-        "Name": "ClassFilters",
-        "Type": "List<string>",
-        "Format": "-classfilters:{value}",
-        "MainSeparator": " ",
-        "Help": "Optional list of classes that should be included or excluded in the report. Exclusion filters take precedence over inclusion filters. Wildcards are allowed. Default is +*."
-      },
-      {
-        "Name": "Verbosity",
-        "Type": "ReportGeneratorVerbosity?",
-        "Format": "-verbosity:{value}",
-        "Help": "The verbosity level of the log messages. Default is Verbose."
-      }
-    ]
   },
   "DataClasses": [],
   "Enumerations": [

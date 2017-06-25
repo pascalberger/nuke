@@ -8,51 +8,50 @@
     "SkipAttributes": true,
     "TaskName": "GitLink",
     "MethodPostfix": "3",
-    "SettingsClass": "GitLink3Settings",
+    "SettingsClass": {
+      "PackageId": "gitlink",
+      "PackageExecutable": "GitLink.exe",
+      "Name": "GitLink3Settings",
+      "Properties": [
+        {
+          "Name": "PdbFile",
+          "Type": "string",
+          "Format": "{value}",
+          "Help": "The PDB to add source indexing to."
+        },
+        {
+          "Name": "Method",
+          "Type": "GitLinkSourceCodeRetrieval?",
+          "Format": "--method {value}",
+          "Help": "The method for SRCSRV to retrieve source code. One of &lt;Http|Powershell&gt;. Default is Http."
+        },
+        {
+          "Name": "RepositoryUrl",
+          "Type": "string",
+          "Format": "--url {value}",
+          "Help": "Url to remote git repository."
+        },
+        {
+          "Name": "CommitSha",
+          "Type": "string",
+          "Format": "--commit {value}",
+          "Help": "The git ref to assume all the source code belongs to."
+        },
+        {
+          "Name": "BaseDirectory",
+          "Type": "string",
+          "Format": "--baseDir {value}",
+          "Help": "The path to the root of the git repo."
+        },
+        {
+          "Name": "SkipVerification",
+          "Type": "bool",
+          "Format": "--skipVerify",
+          "Help": "Skip verification that all source files are available in source control."
+        }
+      ]
+    },
     "OverloadArguments": []
-  },
-  "SettingsClass": {
-    "PackageId": "gitlink",
-    "PackageExecutable": "GitLink.exe",
-    "Name": "GitLink3Settings",
-    "Properties": [
-      {
-        "Name": "PdbFile",
-        "Type": "string",
-        "Format": "{value}",
-        "Help": "The PDB to add source indexing to."
-      },
-      {
-        "Name": "Method",
-        "Type": "GitLinkSourceCodeRetrieval?",
-        "Format": "--method {value}",
-        "Help": "The method for SRCSRV to retrieve source code. One of &lt;Http|Powershell&gt;. Default is Http."
-      },
-      {
-        "Name": "RepositoryUrl",
-        "Type": "string",
-        "Format": "--url {value}",
-        "Help": "Url to remote git repository."
-      },
-      {
-        "Name": "CommitSha",
-        "Type": "string",
-        "Format": "--commit {value}",
-        "Help": "The git ref to assume all the source code belongs to."
-      },
-      {
-        "Name": "BaseDirectory",
-        "Type": "string",
-        "Format": "--baseDir {value}",
-        "Help": "The path to the root of the git repo."
-      },
-      {
-        "Name": "SkipVerification",
-        "Type": "bool",
-        "Format": "--skipVerify",
-        "Help": "Skip verification that all source files are available in source control."
-      }
-    ]
   },
   "DataClasses": [],
   "Enumerations": [
