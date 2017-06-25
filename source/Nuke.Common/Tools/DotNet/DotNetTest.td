@@ -10,7 +10,6 @@
     "SkipAttributes": true,
     "Postfix": "Test",
     "SettingsClass": {
-      "Name": "DotNetTestSettings",
       "BaseClass": "DotNetSettings",
       "DefiniteArgument": "test",
       "Properties": [

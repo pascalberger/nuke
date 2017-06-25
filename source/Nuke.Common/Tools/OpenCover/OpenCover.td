@@ -11,7 +11,6 @@
     "SettingsClass": {
       "PackageId": "OpenCover",
       "PackageExecutable": "OpenCover.Console.exe",
-      "Name": "OpenCoverSettings",
       "Properties": [
         {
           "Name": "TestAction",

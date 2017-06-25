@@ -19,21 +19,21 @@ namespace Nuke.Common.Tools.Xunit
     [ExcludeFromCodeCoverage]
     public static partial class XunitTasks
     {
-        static partial void PreProcess (XunitSettings xunitSettings);
-        static partial void PostProcess (XunitSettings xunitSettings);
+        static partial void PreProcess (Xunit2Settings xunit2Settings);
+        static partial void PostProcess (Xunit2Settings xunit2Settings);
         /// <summary>
         /// <p>xUnit.net is a free, open source, community-focused unit testing tool for the .NET Framework. Written by the original inventor of NUnit v2, xUnit.net is the latest technology for unit testing C#, F#, VB.NET and other .NET languages. xUnit.net works with ReSharper, CodeRush, TestDriven.NET and Xamarin. It is part of the <a href="https://www.dotnetfoundation.org/">.NET Foundation</a>, and operates under their <a href="https://www.dotnetfoundation.org/code-of-conduct">code of conduct</a>. It is licensed under <a href="https://opensource.org/licenses/Apache-2.0">Apache 2</a> (an OSI approved license).</p>
         /// <p>For more details, visit the <a href="https://xunit.github.io">official website</a>.</p>
         /// </summary>
-        public static void Xunit2 (Configure<XunitSettings> configurator = null, ProcessSettings processSettings = null)
+        public static void Xunit2 (Configure<Xunit2Settings> configurator = null, ProcessSettings processSettings = null)
         {
             configurator = configurator ?? (x => x);
-            var xunitSettings = new XunitSettings();
-            xunitSettings = configurator(xunitSettings);
-            PreProcess(xunitSettings);
-            var process = ProcessTasks.StartProcess(xunitSettings, processSettings);
-            AssertProcess(process, xunitSettings);
-            PostProcess(xunitSettings);
+            var xunit2Settings = new Xunit2Settings();
+            xunit2Settings = configurator(xunit2Settings);
+            PreProcess(xunit2Settings);
+            var process = ProcessTasks.StartProcess(xunit2Settings, processSettings);
+            AssertProcess(process, xunit2Settings);
+            PostProcess(xunit2Settings);
         }
     }
     /// <summary>
@@ -43,7 +43,7 @@ namespace Nuke.Common.Tools.Xunit
     [PublicAPI]
     [ExcludeFromCodeCoverage]
     [Serializable]
-    public partial class XunitSettings : ToolSettings
+    public partial class Xunit2Settings : ToolSettings
     {
         /// <inheritdoc />
         public override string ToolPath => base.ToolPath ?? ToolPathResolver.GetToolPath(packageId: $"xunit.runner.console", packageExecutable: $"{GetPackageExecutable()}");
@@ -123,865 +123,865 @@ namespace Nuke.Common.Tools.Xunit
     }
     [PublicAPI]
     [ExcludeFromCodeCoverage]
-    public static partial class XunitSettingsExtensions
+    public static partial class Xunit2SettingsExtensions
     {
         /// <summary>
-        /// <p><i>Extension method for setting <see cref="XunitSettings.TargetAssemblyWithConfigs"/> to a new lookup table.</i></p>
+        /// <p><i>Extension method for setting <see cref="Xunit2Settings.TargetAssemblyWithConfigs"/> to a new lookup table.</i></p>
         /// <p>Assemblies to test, and their related related configuration files (ending with .json or .config).</p>
         /// </summary>
         [Pure]
-        public static XunitSettings SetTargetAssemblyWithConfigs(this XunitSettings xunitSettings, ILookup<string, string> targetAssemblyWithConfigs)
+        public static Xunit2Settings SetTargetAssemblyWithConfigs(this Xunit2Settings xunit2Settings, ILookup<string, string> targetAssemblyWithConfigs)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.TargetAssemblyWithConfigsInternal = targetAssemblyWithConfigs.ToLookupTable(StringComparer.OrdinalIgnoreCase);
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.TargetAssemblyWithConfigsInternal = targetAssemblyWithConfigs.ToLookupTable(StringComparer.OrdinalIgnoreCase);
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for clearing <see cref="XunitSettings.TargetAssemblyWithConfigs"/>.</i></p>
+        /// <p><i>Extension method for clearing <see cref="Xunit2Settings.TargetAssemblyWithConfigs"/>.</i></p>
         /// <p>Assemblies to test, and their related related configuration files (ending with .json or .config).</p>
         /// </summary>
         [Pure]
-        public static XunitSettings ClearTargetAssemblyWithConfigs(this XunitSettings xunitSettings)
+        public static Xunit2Settings ClearTargetAssemblyWithConfigs(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.TargetAssemblyWithConfigsInternal.Clear();
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.TargetAssemblyWithConfigsInternal.Clear();
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for adding a targetAssemblyWithConfig to <see cref="XunitSettings.TargetAssemblyWithConfigs"/>.</i></p>
+        /// <p><i>Extension method for adding a targetAssemblyWithConfig to <see cref="Xunit2Settings.TargetAssemblyWithConfigs"/>.</i></p>
         /// <p>Assemblies to test, and their related related configuration files (ending with .json or .config).</p>
         /// </summary>
         [Pure]
-        public static XunitSettings AddTargetAssemblyWithConfig(this XunitSettings xunitSettings, string targetAssemblyWithConfigKey, string targetAssemblyWithConfigValue)
+        public static Xunit2Settings AddTargetAssemblyWithConfig(this Xunit2Settings xunit2Settings, string targetAssemblyWithConfigKey, string targetAssemblyWithConfigValue)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.TargetAssemblyWithConfigsInternal.Add(targetAssemblyWithConfigKey, targetAssemblyWithConfigValue);
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.TargetAssemblyWithConfigsInternal.Add(targetAssemblyWithConfigKey, targetAssemblyWithConfigValue);
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for removing a single targetAssemblyWithConfig entry from <see cref="XunitSettings.TargetAssemblyWithConfigs"/>.</i></p>
+        /// <p><i>Extension method for removing a single targetAssemblyWithConfig entry from <see cref="Xunit2Settings.TargetAssemblyWithConfigs"/>.</i></p>
         /// <p>Assemblies to test, and their related related configuration files (ending with .json or .config).</p>
         /// </summary>
         [Pure]
-        public static XunitSettings RemoveTargetAssemblyWithConfig(this XunitSettings xunitSettings, string targetAssemblyWithConfigKey, string targetAssemblyWithConfigValue)
+        public static Xunit2Settings RemoveTargetAssemblyWithConfig(this Xunit2Settings xunit2Settings, string targetAssemblyWithConfigKey, string targetAssemblyWithConfigValue)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.TargetAssemblyWithConfigsInternal.Remove(targetAssemblyWithConfigKey, targetAssemblyWithConfigValue);
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.TargetAssemblyWithConfigsInternal.Remove(targetAssemblyWithConfigKey, targetAssemblyWithConfigValue);
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for setting <see cref="XunitSettings.OutputPath"/>.</i></p>
+        /// <p><i>Extension method for setting <see cref="Xunit2Settings.OutputPath"/>.</i></p>
         /// <p>The report file output path.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings SetOutputPath(this XunitSettings xunitSettings, string outputPath)
+        public static Xunit2Settings SetOutputPath(this Xunit2Settings xunit2Settings, string outputPath)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.OutputPath = outputPath;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.OutputPath = outputPath;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for setting <see cref="XunitSettings.NoLogo"/>.</i></p>
+        /// <p><i>Extension method for setting <see cref="Xunit2Settings.NoLogo"/>.</i></p>
         /// <p>Do not show the copyright message.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings SetNoLogo(this XunitSettings xunitSettings, bool noLogo)
+        public static Xunit2Settings SetNoLogo(this Xunit2Settings xunit2Settings, bool noLogo)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.NoLogo = noLogo;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.NoLogo = noLogo;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for enabling <see cref="XunitSettings.NoLogo"/>.</i></p>
+        /// <p><i>Extension method for enabling <see cref="Xunit2Settings.NoLogo"/>.</i></p>
         /// <p>Do not show the copyright message.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings EnableNoLogo(this XunitSettings xunitSettings)
+        public static Xunit2Settings EnableNoLogo(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.NoLogo = true;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.NoLogo = true;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for disabling <see cref="XunitSettings.NoLogo"/>.</i></p>
+        /// <p><i>Extension method for disabling <see cref="Xunit2Settings.NoLogo"/>.</i></p>
         /// <p>Do not show the copyright message.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings DisableNoLogo(this XunitSettings xunitSettings)
+        public static Xunit2Settings DisableNoLogo(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.NoLogo = false;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.NoLogo = false;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for toggling <see cref="XunitSettings.NoLogo"/>.</i></p>
+        /// <p><i>Extension method for toggling <see cref="Xunit2Settings.NoLogo"/>.</i></p>
         /// <p>Do not show the copyright message.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings ToggleNoLogo(this XunitSettings xunitSettings)
+        public static Xunit2Settings ToggleNoLogo(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.NoLogo = !xunitSettings.NoLogo;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.NoLogo = !xunit2Settings.NoLogo;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for setting <see cref="XunitSettings.NoColor"/>.</i></p>
+        /// <p><i>Extension method for setting <see cref="Xunit2Settings.NoColor"/>.</i></p>
         /// <p>Do not output results with colors.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings SetNoColor(this XunitSettings xunitSettings, bool noColor)
+        public static Xunit2Settings SetNoColor(this Xunit2Settings xunit2Settings, bool noColor)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.NoColor = noColor;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.NoColor = noColor;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for enabling <see cref="XunitSettings.NoColor"/>.</i></p>
+        /// <p><i>Extension method for enabling <see cref="Xunit2Settings.NoColor"/>.</i></p>
         /// <p>Do not output results with colors.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings EnableNoColor(this XunitSettings xunitSettings)
+        public static Xunit2Settings EnableNoColor(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.NoColor = true;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.NoColor = true;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for disabling <see cref="XunitSettings.NoColor"/>.</i></p>
+        /// <p><i>Extension method for disabling <see cref="Xunit2Settings.NoColor"/>.</i></p>
         /// <p>Do not output results with colors.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings DisableNoColor(this XunitSettings xunitSettings)
+        public static Xunit2Settings DisableNoColor(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.NoColor = false;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.NoColor = false;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for toggling <see cref="XunitSettings.NoColor"/>.</i></p>
+        /// <p><i>Extension method for toggling <see cref="Xunit2Settings.NoColor"/>.</i></p>
         /// <p>Do not output results with colors.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings ToggleNoColor(this XunitSettings xunitSettings)
+        public static Xunit2Settings ToggleNoColor(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.NoColor = !xunitSettings.NoColor;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.NoColor = !xunit2Settings.NoColor;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for setting <see cref="XunitSettings.NoAppDomain"/>.</i></p>
+        /// <p><i>Extension method for setting <see cref="Xunit2Settings.NoAppDomain"/>.</i></p>
         /// <p>Do not use app domains to run test code.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings SetNoAppDomain(this XunitSettings xunitSettings, bool noAppDomain)
+        public static Xunit2Settings SetNoAppDomain(this Xunit2Settings xunit2Settings, bool noAppDomain)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.NoAppDomain = noAppDomain;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.NoAppDomain = noAppDomain;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for enabling <see cref="XunitSettings.NoAppDomain"/>.</i></p>
+        /// <p><i>Extension method for enabling <see cref="Xunit2Settings.NoAppDomain"/>.</i></p>
         /// <p>Do not use app domains to run test code.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings EnableNoAppDomain(this XunitSettings xunitSettings)
+        public static Xunit2Settings EnableNoAppDomain(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.NoAppDomain = true;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.NoAppDomain = true;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for disabling <see cref="XunitSettings.NoAppDomain"/>.</i></p>
+        /// <p><i>Extension method for disabling <see cref="Xunit2Settings.NoAppDomain"/>.</i></p>
         /// <p>Do not use app domains to run test code.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings DisableNoAppDomain(this XunitSettings xunitSettings)
+        public static Xunit2Settings DisableNoAppDomain(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.NoAppDomain = false;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.NoAppDomain = false;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for toggling <see cref="XunitSettings.NoAppDomain"/>.</i></p>
+        /// <p><i>Extension method for toggling <see cref="Xunit2Settings.NoAppDomain"/>.</i></p>
         /// <p>Do not use app domains to run test code.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings ToggleNoAppDomain(this XunitSettings xunitSettings)
+        public static Xunit2Settings ToggleNoAppDomain(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.NoAppDomain = !xunitSettings.NoAppDomain;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.NoAppDomain = !xunit2Settings.NoAppDomain;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for setting <see cref="XunitSettings.FailSkips"/>.</i></p>
+        /// <p><i>Extension method for setting <see cref="Xunit2Settings.FailSkips"/>.</i></p>
         /// <p>Convert skipped tests into failures.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings SetFailSkips(this XunitSettings xunitSettings, bool failSkips)
+        public static Xunit2Settings SetFailSkips(this Xunit2Settings xunit2Settings, bool failSkips)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.FailSkips = failSkips;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.FailSkips = failSkips;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for enabling <see cref="XunitSettings.FailSkips"/>.</i></p>
+        /// <p><i>Extension method for enabling <see cref="Xunit2Settings.FailSkips"/>.</i></p>
         /// <p>Convert skipped tests into failures.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings EnableFailSkips(this XunitSettings xunitSettings)
+        public static Xunit2Settings EnableFailSkips(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.FailSkips = true;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.FailSkips = true;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for disabling <see cref="XunitSettings.FailSkips"/>.</i></p>
+        /// <p><i>Extension method for disabling <see cref="Xunit2Settings.FailSkips"/>.</i></p>
         /// <p>Convert skipped tests into failures.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings DisableFailSkips(this XunitSettings xunitSettings)
+        public static Xunit2Settings DisableFailSkips(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.FailSkips = false;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.FailSkips = false;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for toggling <see cref="XunitSettings.FailSkips"/>.</i></p>
+        /// <p><i>Extension method for toggling <see cref="Xunit2Settings.FailSkips"/>.</i></p>
         /// <p>Convert skipped tests into failures.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings ToggleFailSkips(this XunitSettings xunitSettings)
+        public static Xunit2Settings ToggleFailSkips(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.FailSkips = !xunitSettings.FailSkips;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.FailSkips = !xunit2Settings.FailSkips;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for setting <see cref="XunitSettings.Parallel"/>.</i></p>
+        /// <p><i>Extension method for setting <see cref="Xunit2Settings.Parallel"/>.</i></p>
         /// <p>Set parallelization based on option:<ul><li><b>none:</b> turn off all parallelization</li><li><b>collections:</b> only parallelize collections</li><li><b>assemblies:</b> only parallelize assemblies</li><li><b>all:</b> parallelize assemblies &amp; collections</li></ul></p>
         /// </summary>
         [Pure]
-        public static XunitSettings SetParallel(this XunitSettings xunitSettings, ParallelOption? parallel)
+        public static Xunit2Settings SetParallel(this Xunit2Settings xunit2Settings, ParallelOption? parallel)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.Parallel = parallel;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.Parallel = parallel;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for setting <see cref="XunitSettings.MaxThreads"/>.</i></p>
+        /// <p><i>Extension method for setting <see cref="Xunit2Settings.MaxThreads"/>.</i></p>
         /// <p>Maximum thread count for collection parallelization:<br/><ul><li><b>default:</b> run with default (1 thread per CPU thread)</li><li><b>unlimited:</b> run with unbounded thread count</li><li><b>(number):</b> limit task thread pool size to 'count'</li></ul></p>
         /// </summary>
         [Pure]
-        public static XunitSettings SetMaxThreads(this XunitSettings xunitSettings, int? maxThreads)
+        public static Xunit2Settings SetMaxThreads(this Xunit2Settings xunit2Settings, int? maxThreads)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.MaxThreads = maxThreads;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.MaxThreads = maxThreads;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for setting <see cref="XunitSettings.NoShadowCopying"/>.</i></p>
+        /// <p><i>Extension method for setting <see cref="Xunit2Settings.NoShadowCopying"/>.</i></p>
         /// <p>Do not shadow copy assemblies.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings SetNoShadowCopying(this XunitSettings xunitSettings, bool noShadowCopying)
+        public static Xunit2Settings SetNoShadowCopying(this Xunit2Settings xunit2Settings, bool noShadowCopying)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.NoShadowCopying = noShadowCopying;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.NoShadowCopying = noShadowCopying;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for enabling <see cref="XunitSettings.NoShadowCopying"/>.</i></p>
+        /// <p><i>Extension method for enabling <see cref="Xunit2Settings.NoShadowCopying"/>.</i></p>
         /// <p>Do not shadow copy assemblies.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings EnableNoShadowCopying(this XunitSettings xunitSettings)
+        public static Xunit2Settings EnableNoShadowCopying(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.NoShadowCopying = true;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.NoShadowCopying = true;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for disabling <see cref="XunitSettings.NoShadowCopying"/>.</i></p>
+        /// <p><i>Extension method for disabling <see cref="Xunit2Settings.NoShadowCopying"/>.</i></p>
         /// <p>Do not shadow copy assemblies.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings DisableNoShadowCopying(this XunitSettings xunitSettings)
+        public static Xunit2Settings DisableNoShadowCopying(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.NoShadowCopying = false;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.NoShadowCopying = false;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for toggling <see cref="XunitSettings.NoShadowCopying"/>.</i></p>
+        /// <p><i>Extension method for toggling <see cref="Xunit2Settings.NoShadowCopying"/>.</i></p>
         /// <p>Do not shadow copy assemblies.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings ToggleNoShadowCopying(this XunitSettings xunitSettings)
+        public static Xunit2Settings ToggleNoShadowCopying(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.NoShadowCopying = !xunitSettings.NoShadowCopying;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.NoShadowCopying = !xunit2Settings.NoShadowCopying;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for setting <see cref="XunitSettings.Wait"/>.</i></p>
+        /// <p><i>Extension method for setting <see cref="Xunit2Settings.Wait"/>.</i></p>
         /// <p>Wait for input after completion.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings SetWait(this XunitSettings xunitSettings, bool wait)
+        public static Xunit2Settings SetWait(this Xunit2Settings xunit2Settings, bool wait)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.Wait = wait;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.Wait = wait;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for enabling <see cref="XunitSettings.Wait"/>.</i></p>
+        /// <p><i>Extension method for enabling <see cref="Xunit2Settings.Wait"/>.</i></p>
         /// <p>Wait for input after completion.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings EnableWait(this XunitSettings xunitSettings)
+        public static Xunit2Settings EnableWait(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.Wait = true;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.Wait = true;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for disabling <see cref="XunitSettings.Wait"/>.</i></p>
+        /// <p><i>Extension method for disabling <see cref="Xunit2Settings.Wait"/>.</i></p>
         /// <p>Wait for input after completion.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings DisableWait(this XunitSettings xunitSettings)
+        public static Xunit2Settings DisableWait(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.Wait = false;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.Wait = false;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for toggling <see cref="XunitSettings.Wait"/>.</i></p>
+        /// <p><i>Extension method for toggling <see cref="Xunit2Settings.Wait"/>.</i></p>
         /// <p>Wait for input after completion.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings ToggleWait(this XunitSettings xunitSettings)
+        public static Xunit2Settings ToggleWait(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.Wait = !xunitSettings.Wait;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.Wait = !xunit2Settings.Wait;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for setting <see cref="XunitSettings.Diagnostics"/>.</i></p>
+        /// <p><i>Extension method for setting <see cref="Xunit2Settings.Diagnostics"/>.</i></p>
         /// <p>Enable diagnostics messages for all test assemblies.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings SetDiagnostics(this XunitSettings xunitSettings, bool diagnostics)
+        public static Xunit2Settings SetDiagnostics(this Xunit2Settings xunit2Settings, bool diagnostics)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.Diagnostics = diagnostics;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.Diagnostics = diagnostics;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for enabling <see cref="XunitSettings.Diagnostics"/>.</i></p>
+        /// <p><i>Extension method for enabling <see cref="Xunit2Settings.Diagnostics"/>.</i></p>
         /// <p>Enable diagnostics messages for all test assemblies.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings EnableDiagnostics(this XunitSettings xunitSettings)
+        public static Xunit2Settings EnableDiagnostics(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.Diagnostics = true;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.Diagnostics = true;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for disabling <see cref="XunitSettings.Diagnostics"/>.</i></p>
+        /// <p><i>Extension method for disabling <see cref="Xunit2Settings.Diagnostics"/>.</i></p>
         /// <p>Enable diagnostics messages for all test assemblies.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings DisableDiagnostics(this XunitSettings xunitSettings)
+        public static Xunit2Settings DisableDiagnostics(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.Diagnostics = false;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.Diagnostics = false;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for toggling <see cref="XunitSettings.Diagnostics"/>.</i></p>
+        /// <p><i>Extension method for toggling <see cref="Xunit2Settings.Diagnostics"/>.</i></p>
         /// <p>Enable diagnostics messages for all test assemblies.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings ToggleDiagnostics(this XunitSettings xunitSettings)
+        public static Xunit2Settings ToggleDiagnostics(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.Diagnostics = !xunitSettings.Diagnostics;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.Diagnostics = !xunit2Settings.Diagnostics;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for setting <see cref="XunitSettings.Debug"/>.</i></p>
+        /// <p><i>Extension method for setting <see cref="Xunit2Settings.Debug"/>.</i></p>
         /// <p>Launch the debugger to debug the tests.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings SetDebug(this XunitSettings xunitSettings, bool debug)
+        public static Xunit2Settings SetDebug(this Xunit2Settings xunit2Settings, bool debug)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.Debug = debug;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.Debug = debug;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for enabling <see cref="XunitSettings.Debug"/>.</i></p>
+        /// <p><i>Extension method for enabling <see cref="Xunit2Settings.Debug"/>.</i></p>
         /// <p>Launch the debugger to debug the tests.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings EnableDebug(this XunitSettings xunitSettings)
+        public static Xunit2Settings EnableDebug(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.Debug = true;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.Debug = true;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for disabling <see cref="XunitSettings.Debug"/>.</i></p>
+        /// <p><i>Extension method for disabling <see cref="Xunit2Settings.Debug"/>.</i></p>
         /// <p>Launch the debugger to debug the tests.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings DisableDebug(this XunitSettings xunitSettings)
+        public static Xunit2Settings DisableDebug(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.Debug = false;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.Debug = false;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for toggling <see cref="XunitSettings.Debug"/>.</i></p>
+        /// <p><i>Extension method for toggling <see cref="Xunit2Settings.Debug"/>.</i></p>
         /// <p>Launch the debugger to debug the tests.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings ToggleDebug(this XunitSettings xunitSettings)
+        public static Xunit2Settings ToggleDebug(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.Debug = !xunitSettings.Debug;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.Debug = !xunit2Settings.Debug;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for setting <see cref="XunitSettings.Serialization"/>.</i></p>
+        /// <p><i>Extension method for setting <see cref="Xunit2Settings.Serialization"/>.</i></p>
         /// <p>Serialize all test cases (for diagnostic purposes only).</p>
         /// </summary>
         [Pure]
-        public static XunitSettings SetSerialization(this XunitSettings xunitSettings, bool serialization)
+        public static Xunit2Settings SetSerialization(this Xunit2Settings xunit2Settings, bool serialization)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.Serialization = serialization;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.Serialization = serialization;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for enabling <see cref="XunitSettings.Serialization"/>.</i></p>
+        /// <p><i>Extension method for enabling <see cref="Xunit2Settings.Serialization"/>.</i></p>
         /// <p>Serialize all test cases (for diagnostic purposes only).</p>
         /// </summary>
         [Pure]
-        public static XunitSettings EnableSerialization(this XunitSettings xunitSettings)
+        public static Xunit2Settings EnableSerialization(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.Serialization = true;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.Serialization = true;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for disabling <see cref="XunitSettings.Serialization"/>.</i></p>
+        /// <p><i>Extension method for disabling <see cref="Xunit2Settings.Serialization"/>.</i></p>
         /// <p>Serialize all test cases (for diagnostic purposes only).</p>
         /// </summary>
         [Pure]
-        public static XunitSettings DisableSerialization(this XunitSettings xunitSettings)
+        public static Xunit2Settings DisableSerialization(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.Serialization = false;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.Serialization = false;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for toggling <see cref="XunitSettings.Serialization"/>.</i></p>
+        /// <p><i>Extension method for toggling <see cref="Xunit2Settings.Serialization"/>.</i></p>
         /// <p>Serialize all test cases (for diagnostic purposes only).</p>
         /// </summary>
         [Pure]
-        public static XunitSettings ToggleSerialization(this XunitSettings xunitSettings)
+        public static Xunit2Settings ToggleSerialization(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.Serialization = !xunitSettings.Serialization;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.Serialization = !xunit2Settings.Serialization;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for setting <see cref="XunitSettings.Traits"/> to a new lookup table.</i></p>
+        /// <p><i>Extension method for setting <see cref="Xunit2Settings.Traits"/> to a new lookup table.</i></p>
         /// <p>Only run tests with matching name/value traits.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings SetTraits(this XunitSettings xunitSettings, ILookup<string, string> traits)
+        public static Xunit2Settings SetTraits(this Xunit2Settings xunit2Settings, ILookup<string, string> traits)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.TraitsInternal = traits.ToLookupTable(StringComparer.OrdinalIgnoreCase);
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.TraitsInternal = traits.ToLookupTable(StringComparer.OrdinalIgnoreCase);
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for clearing <see cref="XunitSettings.Traits"/>.</i></p>
+        /// <p><i>Extension method for clearing <see cref="Xunit2Settings.Traits"/>.</i></p>
         /// <p>Only run tests with matching name/value traits.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings ClearTraits(this XunitSettings xunitSettings)
+        public static Xunit2Settings ClearTraits(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.TraitsInternal.Clear();
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.TraitsInternal.Clear();
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for adding a trait to <see cref="XunitSettings.Traits"/>.</i></p>
+        /// <p><i>Extension method for adding a trait to <see cref="Xunit2Settings.Traits"/>.</i></p>
         /// <p>Only run tests with matching name/value traits.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings AddTrait(this XunitSettings xunitSettings, string traitKey, string traitValue)
+        public static Xunit2Settings AddTrait(this Xunit2Settings xunit2Settings, string traitKey, string traitValue)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.TraitsInternal.Add(traitKey, traitValue);
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.TraitsInternal.Add(traitKey, traitValue);
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for removing a single trait entry from <see cref="XunitSettings.Traits"/>.</i></p>
+        /// <p><i>Extension method for removing a single trait entry from <see cref="Xunit2Settings.Traits"/>.</i></p>
         /// <p>Only run tests with matching name/value traits.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings RemoveTrait(this XunitSettings xunitSettings, string traitKey, string traitValue)
+        public static Xunit2Settings RemoveTrait(this Xunit2Settings xunit2Settings, string traitKey, string traitValue)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.TraitsInternal.Remove(traitKey, traitValue);
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.TraitsInternal.Remove(traitKey, traitValue);
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for setting <see cref="XunitSettings.ExcludedTraits"/> to a new lookup table.</i></p>
+        /// <p><i>Extension method for setting <see cref="Xunit2Settings.ExcludedTraits"/> to a new lookup table.</i></p>
         /// <p>Do not run tests with matching name/value traits.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings SetExcludedTraits(this XunitSettings xunitSettings, ILookup<string, string> excludedTraits)
+        public static Xunit2Settings SetExcludedTraits(this Xunit2Settings xunit2Settings, ILookup<string, string> excludedTraits)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.ExcludedTraitsInternal = excludedTraits.ToLookupTable(StringComparer.OrdinalIgnoreCase);
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.ExcludedTraitsInternal = excludedTraits.ToLookupTable(StringComparer.OrdinalIgnoreCase);
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for clearing <see cref="XunitSettings.ExcludedTraits"/>.</i></p>
+        /// <p><i>Extension method for clearing <see cref="Xunit2Settings.ExcludedTraits"/>.</i></p>
         /// <p>Do not run tests with matching name/value traits.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings ClearExcludedTraits(this XunitSettings xunitSettings)
+        public static Xunit2Settings ClearExcludedTraits(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.ExcludedTraitsInternal.Clear();
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.ExcludedTraitsInternal.Clear();
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for adding a excludedTrait to <see cref="XunitSettings.ExcludedTraits"/>.</i></p>
+        /// <p><i>Extension method for adding a excludedTrait to <see cref="Xunit2Settings.ExcludedTraits"/>.</i></p>
         /// <p>Do not run tests with matching name/value traits.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings AddExcludedTrait(this XunitSettings xunitSettings, string excludedTraitKey, string excludedTraitValue)
+        public static Xunit2Settings AddExcludedTrait(this Xunit2Settings xunit2Settings, string excludedTraitKey, string excludedTraitValue)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.ExcludedTraitsInternal.Add(excludedTraitKey, excludedTraitValue);
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.ExcludedTraitsInternal.Add(excludedTraitKey, excludedTraitValue);
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for removing a single excludedTrait entry from <see cref="XunitSettings.ExcludedTraits"/>.</i></p>
+        /// <p><i>Extension method for removing a single excludedTrait entry from <see cref="Xunit2Settings.ExcludedTraits"/>.</i></p>
         /// <p>Do not run tests with matching name/value traits.</p>
         /// </summary>
         [Pure]
-        public static XunitSettings RemoveExcludedTrait(this XunitSettings xunitSettings, string excludedTraitKey, string excludedTraitValue)
+        public static Xunit2Settings RemoveExcludedTrait(this Xunit2Settings xunit2Settings, string excludedTraitKey, string excludedTraitValue)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.ExcludedTraitsInternal.Remove(excludedTraitKey, excludedTraitValue);
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.ExcludedTraitsInternal.Remove(excludedTraitKey, excludedTraitValue);
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for setting <see cref="XunitSettings.Methods"/> to a new list.</i></p>
+        /// <p><i>Extension method for setting <see cref="Xunit2Settings.Methods"/> to a new list.</i></p>
         /// <p>Run a given test method (should be fully specified; i.e., 'MyNamespace.MyClass.MyTestMethod').</p>
         /// </summary>
         [Pure]
-        public static XunitSettings SetMethods(this XunitSettings xunitSettings, params string[] methods)
+        public static Xunit2Settings SetMethods(this Xunit2Settings xunit2Settings, params string[] methods)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.MethodsInternal = methods.ToList();
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.MethodsInternal = methods.ToList();
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for setting <see cref="XunitSettings.Methods"/> to a new list.</i></p>
+        /// <p><i>Extension method for setting <see cref="Xunit2Settings.Methods"/> to a new list.</i></p>
         /// <p>Run a given test method (should be fully specified; i.e., 'MyNamespace.MyClass.MyTestMethod').</p>
         /// </summary>
         [Pure]
-        public static XunitSettings SetMethods(this XunitSettings xunitSettings, IEnumerable<string> methods)
+        public static Xunit2Settings SetMethods(this Xunit2Settings xunit2Settings, IEnumerable<string> methods)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.MethodsInternal = methods.ToList();
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.MethodsInternal = methods.ToList();
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for adding new methods to the existing <see cref="XunitSettings.Methods"/>.</i></p>
+        /// <p><i>Extension method for adding new methods to the existing <see cref="Xunit2Settings.Methods"/>.</i></p>
         /// <p>Run a given test method (should be fully specified; i.e., 'MyNamespace.MyClass.MyTestMethod').</p>
         /// </summary>
         [Pure]
-        public static XunitSettings AddMethods(this XunitSettings xunitSettings, params string[] methods)
+        public static Xunit2Settings AddMethods(this Xunit2Settings xunit2Settings, params string[] methods)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.MethodsInternal.AddRange(methods);
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.MethodsInternal.AddRange(methods);
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for adding new methods to the existing <see cref="XunitSettings.Methods"/>.</i></p>
+        /// <p><i>Extension method for adding new methods to the existing <see cref="Xunit2Settings.Methods"/>.</i></p>
         /// <p>Run a given test method (should be fully specified; i.e., 'MyNamespace.MyClass.MyTestMethod').</p>
         /// </summary>
         [Pure]
-        public static XunitSettings AddMethods(this XunitSettings xunitSettings, IEnumerable<string> methods)
+        public static Xunit2Settings AddMethods(this Xunit2Settings xunit2Settings, IEnumerable<string> methods)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.MethodsInternal.AddRange(methods);
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.MethodsInternal.AddRange(methods);
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for clearing <see cref="XunitSettings.Methods"/>.</i></p>
+        /// <p><i>Extension method for clearing <see cref="Xunit2Settings.Methods"/>.</i></p>
         /// <p>Run a given test method (should be fully specified; i.e., 'MyNamespace.MyClass.MyTestMethod').</p>
         /// </summary>
         [Pure]
-        public static XunitSettings ClearMethods(this XunitSettings xunitSettings)
+        public static Xunit2Settings ClearMethods(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.MethodsInternal.Clear();
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.MethodsInternal.Clear();
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for adding a single method to <see cref="XunitSettings.Methods"/>.</i></p>
+        /// <p><i>Extension method for adding a single method to <see cref="Xunit2Settings.Methods"/>.</i></p>
         /// <p>Run a given test method (should be fully specified; i.e., 'MyNamespace.MyClass.MyTestMethod').</p>
         /// </summary>
         [Pure]
-        public static XunitSettings AddMethod(this XunitSettings xunitSettings, string method)
+        public static Xunit2Settings AddMethod(this Xunit2Settings xunit2Settings, string method)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.MethodsInternal.Add(method);
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.MethodsInternal.Add(method);
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for removing a single method from <see cref="XunitSettings.Methods"/>.</i></p>
+        /// <p><i>Extension method for removing a single method from <see cref="Xunit2Settings.Methods"/>.</i></p>
         /// <p>Run a given test method (should be fully specified; i.e., 'MyNamespace.MyClass.MyTestMethod').</p>
         /// </summary>
         [Pure]
-        public static XunitSettings RemoveMethod(this XunitSettings xunitSettings, string method)
+        public static Xunit2Settings RemoveMethod(this Xunit2Settings xunit2Settings, string method)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.MethodsInternal.Remove(method);
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.MethodsInternal.Remove(method);
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for setting <see cref="XunitSettings.Classes"/> to a new list.</i></p>
+        /// <p><i>Extension method for setting <see cref="Xunit2Settings.Classes"/> to a new list.</i></p>
         /// <p>Run all methods in a given test class (should be fully specified; i.e., 'MyNamespace.MyClass').</p>
         /// </summary>
         [Pure]
-        public static XunitSettings SetClasses(this XunitSettings xunitSettings, params string[] classes)
+        public static Xunit2Settings SetClasses(this Xunit2Settings xunit2Settings, params string[] classes)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.ClassesInternal = classes.ToList();
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.ClassesInternal = classes.ToList();
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for setting <see cref="XunitSettings.Classes"/> to a new list.</i></p>
+        /// <p><i>Extension method for setting <see cref="Xunit2Settings.Classes"/> to a new list.</i></p>
         /// <p>Run all methods in a given test class (should be fully specified; i.e., 'MyNamespace.MyClass').</p>
         /// </summary>
         [Pure]
-        public static XunitSettings SetClasses(this XunitSettings xunitSettings, IEnumerable<string> classes)
+        public static Xunit2Settings SetClasses(this Xunit2Settings xunit2Settings, IEnumerable<string> classes)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.ClassesInternal = classes.ToList();
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.ClassesInternal = classes.ToList();
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for adding new classes to the existing <see cref="XunitSettings.Classes"/>.</i></p>
+        /// <p><i>Extension method for adding new classes to the existing <see cref="Xunit2Settings.Classes"/>.</i></p>
         /// <p>Run all methods in a given test class (should be fully specified; i.e., 'MyNamespace.MyClass').</p>
         /// </summary>
         [Pure]
-        public static XunitSettings AddClasses(this XunitSettings xunitSettings, params string[] classes)
+        public static Xunit2Settings AddClasses(this Xunit2Settings xunit2Settings, params string[] classes)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.ClassesInternal.AddRange(classes);
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.ClassesInternal.AddRange(classes);
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for adding new classes to the existing <see cref="XunitSettings.Classes"/>.</i></p>
+        /// <p><i>Extension method for adding new classes to the existing <see cref="Xunit2Settings.Classes"/>.</i></p>
         /// <p>Run all methods in a given test class (should be fully specified; i.e., 'MyNamespace.MyClass').</p>
         /// </summary>
         [Pure]
-        public static XunitSettings AddClasses(this XunitSettings xunitSettings, IEnumerable<string> classes)
+        public static Xunit2Settings AddClasses(this Xunit2Settings xunit2Settings, IEnumerable<string> classes)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.ClassesInternal.AddRange(classes);
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.ClassesInternal.AddRange(classes);
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for clearing <see cref="XunitSettings.Classes"/>.</i></p>
+        /// <p><i>Extension method for clearing <see cref="Xunit2Settings.Classes"/>.</i></p>
         /// <p>Run all methods in a given test class (should be fully specified; i.e., 'MyNamespace.MyClass').</p>
         /// </summary>
         [Pure]
-        public static XunitSettings ClearClasses(this XunitSettings xunitSettings)
+        public static Xunit2Settings ClearClasses(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.ClassesInternal.Clear();
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.ClassesInternal.Clear();
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for adding a single classe to <see cref="XunitSettings.Classes"/>.</i></p>
+        /// <p><i>Extension method for adding a single classe to <see cref="Xunit2Settings.Classes"/>.</i></p>
         /// <p>Run all methods in a given test class (should be fully specified; i.e., 'MyNamespace.MyClass').</p>
         /// </summary>
         [Pure]
-        public static XunitSettings AddClasse(this XunitSettings xunitSettings, string classe)
+        public static Xunit2Settings AddClasse(this Xunit2Settings xunit2Settings, string classe)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.ClassesInternal.Add(classe);
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.ClassesInternal.Add(classe);
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for removing a single classe from <see cref="XunitSettings.Classes"/>.</i></p>
+        /// <p><i>Extension method for removing a single classe from <see cref="Xunit2Settings.Classes"/>.</i></p>
         /// <p>Run all methods in a given test class (should be fully specified; i.e., 'MyNamespace.MyClass').</p>
         /// </summary>
         [Pure]
-        public static XunitSettings RemoveClasse(this XunitSettings xunitSettings, string classe)
+        public static Xunit2Settings RemoveClasse(this Xunit2Settings xunit2Settings, string classe)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.ClassesInternal.Remove(classe);
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.ClassesInternal.Remove(classe);
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for setting <see cref="XunitSettings.Namespaces"/> to a new list.</i></p>
+        /// <p><i>Extension method for setting <see cref="Xunit2Settings.Namespaces"/> to a new list.</i></p>
         /// <p>Run all methods in a given namespace (i.e., 'MyNamespace.MySubNamespace').</p>
         /// </summary>
         [Pure]
-        public static XunitSettings SetNamespaces(this XunitSettings xunitSettings, params string[] nss)
+        public static Xunit2Settings SetNamespaces(this Xunit2Settings xunit2Settings, params string[] nss)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.NamespacesInternal = nss.ToList();
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.NamespacesInternal = nss.ToList();
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for setting <see cref="XunitSettings.Namespaces"/> to a new list.</i></p>
+        /// <p><i>Extension method for setting <see cref="Xunit2Settings.Namespaces"/> to a new list.</i></p>
         /// <p>Run all methods in a given namespace (i.e., 'MyNamespace.MySubNamespace').</p>
         /// </summary>
         [Pure]
-        public static XunitSettings SetNamespaces(this XunitSettings xunitSettings, IEnumerable<string> nss)
+        public static Xunit2Settings SetNamespaces(this Xunit2Settings xunit2Settings, IEnumerable<string> nss)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.NamespacesInternal = nss.ToList();
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.NamespacesInternal = nss.ToList();
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for adding new nss to the existing <see cref="XunitSettings.Namespaces"/>.</i></p>
+        /// <p><i>Extension method for adding new nss to the existing <see cref="Xunit2Settings.Namespaces"/>.</i></p>
         /// <p>Run all methods in a given namespace (i.e., 'MyNamespace.MySubNamespace').</p>
         /// </summary>
         [Pure]
-        public static XunitSettings AddNamespaces(this XunitSettings xunitSettings, params string[] nss)
+        public static Xunit2Settings AddNamespaces(this Xunit2Settings xunit2Settings, params string[] nss)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.NamespacesInternal.AddRange(nss);
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.NamespacesInternal.AddRange(nss);
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for adding new nss to the existing <see cref="XunitSettings.Namespaces"/>.</i></p>
+        /// <p><i>Extension method for adding new nss to the existing <see cref="Xunit2Settings.Namespaces"/>.</i></p>
         /// <p>Run all methods in a given namespace (i.e., 'MyNamespace.MySubNamespace').</p>
         /// </summary>
         [Pure]
-        public static XunitSettings AddNamespaces(this XunitSettings xunitSettings, IEnumerable<string> nss)
+        public static Xunit2Settings AddNamespaces(this Xunit2Settings xunit2Settings, IEnumerable<string> nss)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.NamespacesInternal.AddRange(nss);
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.NamespacesInternal.AddRange(nss);
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for clearing <see cref="XunitSettings.Namespaces"/>.</i></p>
+        /// <p><i>Extension method for clearing <see cref="Xunit2Settings.Namespaces"/>.</i></p>
         /// <p>Run all methods in a given namespace (i.e., 'MyNamespace.MySubNamespace').</p>
         /// </summary>
         [Pure]
-        public static XunitSettings ClearNamespaces(this XunitSettings xunitSettings)
+        public static Xunit2Settings ClearNamespaces(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.NamespacesInternal.Clear();
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.NamespacesInternal.Clear();
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for adding a single ns to <see cref="XunitSettings.Namespaces"/>.</i></p>
+        /// <p><i>Extension method for adding a single ns to <see cref="Xunit2Settings.Namespaces"/>.</i></p>
         /// <p>Run all methods in a given namespace (i.e., 'MyNamespace.MySubNamespace').</p>
         /// </summary>
         [Pure]
-        public static XunitSettings AddNamespace(this XunitSettings xunitSettings, string ns)
+        public static Xunit2Settings AddNamespace(this Xunit2Settings xunit2Settings, string ns)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.NamespacesInternal.Add(ns);
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.NamespacesInternal.Add(ns);
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for removing a single ns from <see cref="XunitSettings.Namespaces"/>.</i></p>
+        /// <p><i>Extension method for removing a single ns from <see cref="Xunit2Settings.Namespaces"/>.</i></p>
         /// <p>Run all methods in a given namespace (i.e., 'MyNamespace.MySubNamespace').</p>
         /// </summary>
         [Pure]
-        public static XunitSettings RemoveNamespace(this XunitSettings xunitSettings, string ns)
+        public static Xunit2Settings RemoveNamespace(this Xunit2Settings xunit2Settings, string ns)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.NamespacesInternal.Remove(ns);
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.NamespacesInternal.Remove(ns);
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for setting <see cref="XunitSettings.NoAutoReporters"/>.</i></p>
+        /// <p><i>Extension method for setting <see cref="Xunit2Settings.NoAutoReporters"/>.</i></p>
         /// <p>Do not allow reporters to be auto-enabled by environment for example, auto-detecting TeamCity or AppVeyor).</p>
         /// </summary>
         [Pure]
-        public static XunitSettings SetNoAutoReporters(this XunitSettings xunitSettings, bool noAutoReporters)
+        public static Xunit2Settings SetNoAutoReporters(this Xunit2Settings xunit2Settings, bool noAutoReporters)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.NoAutoReporters = noAutoReporters;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.NoAutoReporters = noAutoReporters;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for enabling <see cref="XunitSettings.NoAutoReporters"/>.</i></p>
+        /// <p><i>Extension method for enabling <see cref="Xunit2Settings.NoAutoReporters"/>.</i></p>
         /// <p>Do not allow reporters to be auto-enabled by environment for example, auto-detecting TeamCity or AppVeyor).</p>
         /// </summary>
         [Pure]
-        public static XunitSettings EnableNoAutoReporters(this XunitSettings xunitSettings)
+        public static Xunit2Settings EnableNoAutoReporters(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.NoAutoReporters = true;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.NoAutoReporters = true;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for disabling <see cref="XunitSettings.NoAutoReporters"/>.</i></p>
+        /// <p><i>Extension method for disabling <see cref="Xunit2Settings.NoAutoReporters"/>.</i></p>
         /// <p>Do not allow reporters to be auto-enabled by environment for example, auto-detecting TeamCity or AppVeyor).</p>
         /// </summary>
         [Pure]
-        public static XunitSettings DisableNoAutoReporters(this XunitSettings xunitSettings)
+        public static Xunit2Settings DisableNoAutoReporters(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.NoAutoReporters = false;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.NoAutoReporters = false;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for toggling <see cref="XunitSettings.NoAutoReporters"/>.</i></p>
+        /// <p><i>Extension method for toggling <see cref="Xunit2Settings.NoAutoReporters"/>.</i></p>
         /// <p>Do not allow reporters to be auto-enabled by environment for example, auto-detecting TeamCity or AppVeyor).</p>
         /// </summary>
         [Pure]
-        public static XunitSettings ToggleNoAutoReporters(this XunitSettings xunitSettings)
+        public static Xunit2Settings ToggleNoAutoReporters(this Xunit2Settings xunit2Settings)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.NoAutoReporters = !xunitSettings.NoAutoReporters;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.NoAutoReporters = !xunit2Settings.NoAutoReporters;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for setting <see cref="XunitSettings.Reporter"/>.</i></p>
+        /// <p><i>Extension method for setting <see cref="Xunit2Settings.Reporter"/>.</i></p>
         /// <p>Reporters:<ul><li><c>-appveyor</c>: forces AppVeyor CI mode (normally auto-detected)</li><li><c>-json</c>: show progress messages in JSON format</li><li><c>-quiet</c>: do not show progress messages</li><li><c>-teamcity</c>: forces TeamCity mode (normally auto-detected)</li><li><c>-verbose</c>: show verbose progress messages</li></ul></p>
         /// </summary>
         [Pure]
-        public static XunitSettings SetReporter(this XunitSettings xunitSettings, ReporterType? reporter)
+        public static Xunit2Settings SetReporter(this Xunit2Settings xunit2Settings, ReporterType? reporter)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.Reporter = reporter;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.Reporter = reporter;
+            return xunit2Settings;
         }
         /// <summary>
-        /// <p><i>Extension method for setting <see cref="XunitSettings.ResultFormat"/>.</i></p>
+        /// <p><i>Extension method for setting <see cref="Xunit2Settings.ResultFormat"/>.</i></p>
         /// <p>Result formats:<ul><li><c>-xml</c>: output results to xUnit.net v2 XML file</li><li><c>-xmlv1</c>: output results to xUnit.net v1 XML file</li><li><c>-nunit</c>: output results to NUnit v2.5 XML file</li><li><c>-html</c>: output results to HTML file</li></ul></p>
         /// </summary>
         [Pure]
-        public static XunitSettings SetResultFormat(this XunitSettings xunitSettings, ResultFormat? resultFormat)
+        public static Xunit2Settings SetResultFormat(this Xunit2Settings xunit2Settings, ResultFormat? resultFormat)
         {
-            xunitSettings = xunitSettings.NewInstance();
-            xunitSettings.ResultFormat = resultFormat;
-            return xunitSettings;
+            xunit2Settings = xunit2Settings.NewInstance();
+            xunit2Settings.ResultFormat = resultFormat;
+            return xunit2Settings;
         }
     }
     /// <summary>

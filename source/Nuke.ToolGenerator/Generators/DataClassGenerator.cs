@@ -21,7 +21,7 @@ namespace Nuke.ToolGenerator.Generators
             var baseType = dataClass.BaseClass ?? (dataClass.Name.EndsWith("Settings") ? "ToolSettings" : "ISettingsEntity");
 
             writer
-                    .WriteSummary(writer.Tool)
+                    .WriteSummary(dataClass.Tool)
                     .WriteLine("[PublicAPI]")
                     .WriteLine("[ExcludeFromCodeCoverage]")
                     .WriteLine("[Serializable]")

@@ -10,7 +10,6 @@
     "SkipAttributes": true,
     "Postfix": "Run",
     "SettingsClass": {
-      "Name": "DotNetRunSettings",
       "BaseClass": "DotNetSettings",
       "DefiniteArgument": "run",
       "Properties": [

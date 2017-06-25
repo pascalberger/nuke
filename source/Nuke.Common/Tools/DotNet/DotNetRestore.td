@@ -10,7 +10,6 @@
     "IconClass": "fire",
     "Postfix": "Restore",
     "SettingsClass": {
-      "Name": "DotNetRestoreSettings",
       "BaseClass": "DotNetSettings",
       "DefiniteArgument": "restore",
       "Properties": [

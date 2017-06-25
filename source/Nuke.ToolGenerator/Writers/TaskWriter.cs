@@ -8,12 +8,10 @@ namespace Nuke.ToolGenerator.Writers
     {
         public TaskWriter (Task task, ToolWriter toolWriter)
         {
-            Tool = toolWriter.Tool;
             Task = task;
             Writer = toolWriter;
         }
 
-        public Tool Tool { get; }
         public Task Task { get; }
         public IWriter Writer { get; }
     }

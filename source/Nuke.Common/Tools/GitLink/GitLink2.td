@@ -8,7 +8,6 @@
     "SettingsClass": {
       "PackageId": "gitlink",
       "PackageExecutable": "GitLink.exe",
-      "Name": "GitLink2Settings",
       "Properties": [
         {
           "Name": "SolutionDirectory",

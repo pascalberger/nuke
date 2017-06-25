@@ -24,16 +24,14 @@ namespace Nuke.ToolGenerator.Generators
             writer
                     .WriteLineIfTrue(!task.SkipAttributes, "[PublicAPI]")
                     .WriteLineIfTrue(!task.SkipAttributes, "[ExcludeFromCodeCoverage]")
-                    .WriteLine($"public static partial class {writer.Tool.Name}Tasks")
-                    .WriteBlock(w =>
-                    {
-                        WritePreAndPostProcess(w);
-                        WriteMainTask(w);
-                        WriteTaskOverloads(w);
-                    });
+                    .WriteLine($"public static partial class {task.GetTaskClassName()}")
+                    .WriteBlock(w => w
+                            .WritePreAndPostProcess()
+                            .WriteMainTask()
+                            .WriteTaskOverloads());
         }
 
-        private static TaskWriter WriteTaskOverloads (TaskWriter writer, int index = 0)
+        private static TaskWriter WriteTaskOverloads (this TaskWriter writer, int index = 0)
         {
             var task = writer.Task;
             var settingsClass = task.SettingsClass;
@@ -50,19 +48,19 @@ namespace Nuke.ToolGenerator.Generators
             var allArguments = nextArguments.Concat(new[] { setter });
 
             writer
-                    .WriteSummary(writer.Tool)
+                    .WriteSummary(task.Tool)
                     .WriteLine(GetTaskSignature(writer.Task, additionalParameterDeclarations))
                     .WriteBlock(w => w
                             .WriteLine("configurator = configurator ?? (x => x);")
                             .WriteLine($"{task.GetTaskMethodName()}({allArguments.Join()});"));
 
-            return WriteTaskOverloads(writer, index + 1);
+            return writer.WriteTaskOverloads(index + 1);
         }
 
         private static TaskWriter WriteMainTask (this TaskWriter writer)
         {
             return writer
-                    .WriteSummary(writer.Tool)
+                    .WriteSummary(writer.Task.Tool)
                     .WriteLine(GetTaskSignature(writer.Task))
                     .WriteBlock(WriteMainTaskBlock);
         }

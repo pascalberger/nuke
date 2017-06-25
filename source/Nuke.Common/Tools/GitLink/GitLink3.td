@@ -11,7 +11,6 @@
     "SettingsClass": {
       "PackageId": "gitlink",
       "PackageExecutable": "GitLink.exe",
-      "Name": "GitLink3Settings",
       "Properties": [
         {
           "Name": "PdbFile",

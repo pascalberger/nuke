@@ -10,7 +10,6 @@
     "SkipAttributes": true,
     "Postfix": "Restore",
     "SettingsClass": {
-      "Name": "NuGetRestoreSettings",
       "BaseClass": "NuGetSettings",
       "DefiniteArgument": "restore",
       "Properties": [

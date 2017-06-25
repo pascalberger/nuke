@@ -10,7 +10,6 @@
     "IconClass": "code",
     "SettingsClass": {
       "PackageId": "JetBrains.ReSharper.CommandLineTools",
-      "Name": "InspectCodeSettings",
       "Properties": [
         {
           "Name": "TargetPath",

@@ -10,7 +10,6 @@
     "SkipAttributes": true,
     "Postfix": "Pack",
     "SettingsClass": {
-      "Name": "DotNetPackSettings",
       "BaseClass": "DotNetSettings",
       "DefiniteArgument": "pack",
       "Properties": [

@@ -10,7 +10,6 @@
     "SettingsClass": {
       "PackageId": "GitVersion.CommandLine",
       "PackageExecutable": "GitVersion.exe",
-      "Name": "GitVersionSettings",
       "Properties": [
         {
           "Name": "UpdateAssemblyInfo",

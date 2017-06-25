@@ -10,7 +10,6 @@
     "IconClass": "download2",
     "SettingsClass": {
       "CustomExecutable": "MSBuildToolPathResolver.Resolve(MSBuildVersion, MSBuildPlatform)",
-      "Name": "MSBuildSettings",
       "Properties": [
         {
           "Name": "TargetPath",

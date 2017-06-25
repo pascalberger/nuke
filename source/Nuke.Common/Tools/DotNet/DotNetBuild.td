@@ -10,7 +10,6 @@
     "SkipAttributes": true,
     "Postfix": "Build",
     "SettingsClass": {
-      "Name": "DotNetBuildSettings",
       "BaseClass": "DotNetSettings",
       "DefiniteArgument": "build",
       "Properties": [

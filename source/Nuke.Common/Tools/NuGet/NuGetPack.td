@@ -10,7 +10,6 @@
     "IconClass": "box",
     "Postfix": "Pack",
     "SettingsClass": {
-      "Name": "NuGetPackSettings",
       "BaseClass": "NuGetSettings",
       "DefiniteArgument": "pack",
       "Properties": [

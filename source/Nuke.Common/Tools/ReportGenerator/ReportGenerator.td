@@ -10,7 +10,6 @@
     "SettingsClass": {
       "PackageId": "ReportGenerator",
       "PackageExecutable": "ReportGenerator.exe",
-      "Name": "ReportGeneratorSettings",
       "Properties": [
         {
           "Name": "Reports",

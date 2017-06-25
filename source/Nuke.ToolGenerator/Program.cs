@@ -49,7 +49,10 @@ namespace Nuke.ToolGenerator
             if (tool.Task != null)
             {
                 tool.Task.Tool = tool;
+                tool.Task.SettingsClass.Tool = tool;
             }
+            foreach (var dataClass in tool.DataClasses)
+                dataClass.Tool = tool;
 
             return tool;
         }

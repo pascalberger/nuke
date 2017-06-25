@@ -11,7 +11,6 @@
     "CustomAssertion": true,
     "SettingsClass": {
       "PackageId": "xunit.runner.console",
-      "Name": "XunitSettings",
       "Properties": [
         {
           "Name": "TargetAssemblyWithConfigs",

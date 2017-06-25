@@ -1,15 +1,19 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace Nuke.ToolGenerator.Model
 {
     public class DataClass
     {
+        [JsonIgnore]
+        public Tool Tool { get; set; }
+
         /// <summary>
         /// The name of the data class.
         /// </summary>
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
 
         /// <summary>
         /// The base class to inherit from.
@@ -34,6 +38,8 @@ namespace Nuke.ToolGenerator.Model
 
     public class SettingsClass : DataClass
     {
+        public override string Name => $"{Tool.Name}{Tool.Task.Postfix}Settings";
+
         /// <summary>
         /// NuGet package id that contains the executable.
         /// </summary>

@@ -11,7 +11,6 @@
     "SettingsClass": {
       "PackageId": "docfx.console",
       "PackageExecutable": "docfx.exe",
-      "Name": "DocFxBuildSettings",
       "DefiniteArgument": "build",
       "Properties": [
         {

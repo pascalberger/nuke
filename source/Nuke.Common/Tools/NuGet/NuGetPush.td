@@ -10,7 +10,6 @@
     "SkipAttributes": true,
     "Postfix": "Push",
     "SettingsClass": {
-      "Name": "NuGetPushSettings",
       "BaseClass": "NuGetSettings",
       "DefiniteArgument": "push",
       "Properties": [
