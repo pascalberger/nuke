@@ -17,6 +17,7 @@
           "Type": "string",
           "Assertion": "File",
           "Format": "{value}",
+          "CreateOverload": true,
           "Help": "Target path."
         },
         {
@@ -24,6 +25,7 @@
           "Type": "string",
           "Assertion": "NotNull",
           "Format": "--output={value}",
+          "CreateOverload": true,
           "Help": "Lets you set the output file. By default, the output file is saved in the <i>%TEMP%</i> directory."
         },
         {
@@ -89,11 +91,7 @@
           "Help": "Explicitly specified MsBuild Toolset version (12.0, 14.0, 15.0). For example, <c>--toolset=12.0</c>."
         }
       ]
-    },
-    "OverloadArguments": [
-      "TargetPath",
-      "Output"
-    ]
+    }
   },
   "DataClasses": [],
   "Enumerations": [

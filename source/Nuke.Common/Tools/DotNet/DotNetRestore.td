@@ -18,6 +18,7 @@
           "Name": "ProjectFile",
           "Type": "string",
           "Format": "{value}",
+          "CreateOverload": true,
           "Help": "Optional path to the project file to restore."
         },
         {
@@ -75,10 +76,7 @@
           "Help": "Sets the verbosity level of the command. Allowed values are <c>q[uiet]</c>, <c>m[inimal]</c>, <c>n[ormal]</c>, <c>d[etailed]</c>, and <c>diag[nostic]</c>."
         }
       ]
-    },
-    "OverloadArguments": [
-      "ProjectFile"
-    ]
+    }
   },
   "DataClasses": [],
   "Enumerations": [

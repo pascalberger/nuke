@@ -17,6 +17,7 @@
           "Type": "string",
           "Assertion": "FileOrNull",
           "Format": "{value}",
+          "CreateOverload": true,
           "Help": "The solution or project file on which MSBuild is executed."
         },
         {
@@ -81,10 +82,7 @@
           "Help": "Specifies the platform to use when building."
         }
       ]
-    },
-    "OverloadArguments": [
-      "TargetPath"
-    ]
+    }
   },
   "DataClasses": [],
   "Enumerations": [

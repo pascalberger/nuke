@@ -33,8 +33,7 @@
           "Help": "Specifies the path and name of the project file. (See the NOTE.) It defaults to the current directory if not specified."
         }
       ]
-    },
-    "OverloadArguments": []
+    }
   },
   "DataClasses": [],
   "Enumerations": []

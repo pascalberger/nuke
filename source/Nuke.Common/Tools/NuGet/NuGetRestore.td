@@ -18,6 +18,7 @@
           "Name": "TargetPath",
           "Type": "string",
           "Format": "{value}",
+          "CreateOverload": true,
           "Help": "Defines the project to restore. I.e., the location of a solution file, a <c>packages.config</c>, or a <c>project.json</c> file."
         },
         {
@@ -132,10 +133,7 @@
           "Help": "<i>(2.5+)</i> Specifies the amount of detail displayed in the output: <i>normal</i>, <i>quiet</i>, <i>detailed</i>."
         }
       ]
-    },
-    "OverloadArguments": [
-      "TargetPath"
-    ]
+    }
   },
   "DataClasses": [],
   "Enumerations": [

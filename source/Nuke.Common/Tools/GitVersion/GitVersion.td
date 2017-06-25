@@ -18,8 +18,7 @@
           "Format": "/updateassemblyinfo"
         }
       ]
-    },
-    "OverloadArguments": []
+    }
   },
   "DataClasses": [],
   "Enumerations": []

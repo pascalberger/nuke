@@ -50,8 +50,7 @@
           "Help": "Skip verification that all source files are available in source control."
         }
       ]
-    },
-    "OverloadArguments": []
+    }
   },
   "DataClasses": [],
   "Enumerations": [

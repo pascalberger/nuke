@@ -47,8 +47,10 @@ namespace Nuke.ToolGenerator
             
             tool.File = file;
             if (tool.Alias != null)
+            {
                 tool.Alias.Tool = tool;
-            
+            }
+
             return tool;
         }
 

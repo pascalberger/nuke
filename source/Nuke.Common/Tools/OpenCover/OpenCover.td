@@ -14,6 +14,12 @@
       "Name": "OpenCoverSettings",
       "Properties": [
         {
+          "Name": "TestAction",
+          "Type": "Action",
+          "CreateOverload": true,
+          "Help": "The action that executes tests."
+        },
+        {
           "Name": "TargetPath",
           "Type": "string",
           "Assertion": "File",
@@ -114,6 +120,7 @@
           "Name": "Output",
           "Type": "string",
           "Format": "-output:{value}",
+          "CreateOverload": true,
           "Help": "The location and name of the output Xml file. If no value is supplied then the current directory will be used and the output filename will be <c>results.xml</c>."
         },
         {
@@ -164,18 +171,9 @@
           "Type": "int?",
           "Format": "-returntargetcode:{value}",
           "Help": "Return the target process exit code instead of the OpenCover console exit code. Use the offset to return the OpenCover console at a value outside the range returned by the target process."
-        },
-        {
-          "Name": "TestAction",
-          "Type": "Action",
-          "Help": "The action that executes tests."
         }
       ]
-    },
-    "OverloadArguments": [
-      "TestAction",
-      "Output"
-    ]
+    }
   },
   "DataClasses": [],
   "Enumerations": [

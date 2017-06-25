@@ -38,13 +38,5 @@ namespace Nuke.ToolGenerator.Model
         /// The related settings class.
         /// </summary>
         public SettingsClass SettingsClass { get; set; }
-
-        /// <summary>
-        /// A list dominant properties of the <see cref="SettingsClass"/> that are exposed over dedicated overloads. 
-        /// </summary>
-        /// <remarks>
-        /// Most important properties comes first.
-        /// </remarks>
-        public List<string> OverloadArguments { get; set; } = new List<string>();
     }
 }

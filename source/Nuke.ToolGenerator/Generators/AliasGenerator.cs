@@ -36,14 +36,13 @@ namespace Nuke.ToolGenerator.Generators
         private static AliasWriter WriteAliasOverloads (AliasWriter writer, int index = 0)
         {
             var alias = writer.Alias;
-
-            if (index == alias.OverloadArguments.Count)
-                return writer;
-
             var settingsClass = alias.SettingsClass;
-            var properties = alias.OverloadArguments.Take(index + 1).Select(x => settingsClass.Properties.Single(y => y.Name == x)).ToList();
-            var additionalParameterDeclarations = properties.Select(x => $"{x.GetNullabilityAttribute()}{x.Type} {x.Name.ToInstance()}");
+            var properties = alias.SettingsClass.Properties.Where(x => x.CreateOverload).Take(index + 1).ToList();
 
+            if (properties.Count == 0 || index >= properties.Count)
+                return writer;
+            
+            var additionalParameterDeclarations = properties.Select(x => $"{x.GetNullabilityAttribute()}{x.Type} {x.Name.ToInstance()}");
             var nextArguments = properties.AsEnumerable().Reverse().Skip(count: 1).Reverse().Select(x => x.Name.ToInstance());
             var configuratorName = "configurator";
             var currentArgument = properties.Last();

@@ -65,8 +65,7 @@
           "Help": "The verbosity level of the log messages. Default is Verbose."
         }
       ]
-    },
-    "OverloadArguments": []
+    }
   },
   "DataClasses": [],
   "Enumerations": [

@@ -87,8 +87,7 @@
           "Help": "Sets the verbosity level of the command. Allowed values are <c>q[uiet]</c>, <c>m[inimal]</c>, <c>n[ormal]</c>, <c>d[etailed]</c>, and <c>diag[nostic]</c>."
         }
       ]
-    },
-    "OverloadArguments": []
+    }
   },
   "DataClasses": [],
   "Enumerations": []

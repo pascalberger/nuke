@@ -89,8 +89,7 @@
           "Help": "Enables debug mode with special dumps of msbuild."
         }
       ]
-    },
-    "OverloadArguments": []
+    }
   },
   "DataClasses": [],
   "Enumerations": []

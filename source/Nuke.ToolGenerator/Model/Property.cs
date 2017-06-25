@@ -48,6 +48,11 @@ namespace Nuke.ToolGenerator.Model
         public bool CustomValue { get; set; }
         
         /// <summary>
+        /// Defines whether to create a task overload for that property.
+        /// </summary>
+        public bool CreateOverload { get; set; }
+        
+        /// <summary>
         /// The help text.
         /// </summary>
         public string Help { get; set; }

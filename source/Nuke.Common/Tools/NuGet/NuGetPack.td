@@ -19,6 +19,7 @@
           "Type": "string",
           "Assertion": "File",
           "Format": "{value}",
+          "CreateOverload": true,
           "Help": "The <c>.nuspec</c> or <c>.csproj</c> file."
         },
         {
@@ -130,6 +131,7 @@
           "Name": "Version",
           "Type": "string",
           "Format": "-Version {value}",
+          "CreateOverload": true,
           "Help": "Overrides the version number from the <c>.nuspec</c> file."
         },
         {
@@ -137,11 +139,7 @@
           "Type": "string"
         }
       ]
-    },
-    "OverloadArguments": [
-      "TargetPath",
-      "Version"
-    ]
+    }
   },
   "DataClasses": [],
   "Enumerations": [

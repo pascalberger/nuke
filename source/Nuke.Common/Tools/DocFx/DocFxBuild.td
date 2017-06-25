@@ -19,6 +19,7 @@
           "Type": "string",
           "Assertion": "FileOrNull",
           "Format": "{value}",
+          "CreateOverload": true,
           "Help": "Path to the docfx.json configuration file."
         },
         {
@@ -54,10 +55,7 @@
           "Help": "Specify to which log level will be logged. By default log level &gt;= Info will be logged. The acceptable value could be Verbose, Info, Warning, Error."
         }
       ]
-    },
-    "OverloadArguments": [
-      "ConfigPath"
-    ]
+    }
   },
   "DataClasses": [],
   "Enumerations": []
