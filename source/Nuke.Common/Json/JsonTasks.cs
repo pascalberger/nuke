@@ -5,18 +5,18 @@
 using System.IO;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
-using Nuke.Common.Xml;
+using Nuke.Common.Json;
 using Nuke.Core.Execution;
 using Nuke.Core.Tooling;
 
-[assembly: IconClass(typeof(XmlTasks), "file-empty2")]
+[assembly: IconClass(typeof(JsonTasks), "file-empty2")]
 
 namespace Nuke.Common.Json
 {
     [PublicAPI]
     public static class JsonTasks
     {
-        public static void Serialize<T>(T obj, string path, Configure<JsonSerializerSettings> configurator = null)
+        public static void JsonSerialize<T>(T obj, string path, Configure<JsonSerializerSettings> configurator = null)
         {
             configurator = configurator ?? (x => x);
             var settings = new JsonSerializerSettings
@@ -31,7 +31,7 @@ namespace Nuke.Common.Json
             File.WriteAllText(path, content);
         }
         
-        public static T Deserialize<T>(string path, Configure<JsonSerializerSettings> configurator = null)
+        public static T JsonDeserialize<T>(string path, Configure<JsonSerializerSettings> configurator = null)
         {
             configurator = configurator ?? (x => x);
             var settings = new JsonSerializerSettings
