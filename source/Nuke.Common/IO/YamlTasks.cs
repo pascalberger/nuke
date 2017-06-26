@@ -2,9 +2,10 @@
 // Distributed under the MIT License.
 // https://github.com/matkoch/Nuke/blob/master/LICENSE
 
+using System;
 using System.IO;
-using System.Runtime.InteropServices.ComTypes;
-using Nuke.Common.Yaml;
+using System.Linq;
+using Nuke.Common.IO;
 using Nuke.Core.Execution;
 using Nuke.Core.Tooling;
 using YamlDotNet.Serialization;
@@ -12,7 +13,7 @@ using YamlDotNet.Serialization.NamingConventions;
 
 [assembly: IconClass(typeof(YamlTasks), "file-empty2")]
 
-namespace Nuke.Common.Yaml
+namespace Nuke.Common.IO
 {
     public class YamlTasks
     {

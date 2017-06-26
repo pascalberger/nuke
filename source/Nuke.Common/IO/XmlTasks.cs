@@ -6,21 +6,21 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 using JetBrains.Annotations;
-using Nuke.Common.Xml;
+using Nuke.Common.IO;
 using Nuke.Core;
 using Nuke.Core.Execution;
+
 #if !NETCORE
 using System.Collections;
+using System.Xml.Serialization;
 using System.Xml.XPath;
 #endif
 
 [assembly: IconClass(typeof(XmlTasks), "file-empty2")]
 
-namespace Nuke.Common.Xml
+namespace Nuke.Common.IO
 {
     [PublicAPI]
     public static class XmlTasks
