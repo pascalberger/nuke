@@ -7,6 +7,5 @@ using System.Linq;
 
 namespace Nuke.Core.Tooling
 {
-    public delegate T Configure<T> (T settings)
-        where T : ToolSettings;
+    public delegate T Configure<T> (T settings);
 }

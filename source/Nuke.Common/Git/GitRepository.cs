@@ -8,17 +8,17 @@ using System.Text.RegularExpressions;
 using JetBrains.Annotations;
 using Nuke.Core;
 
-namespace Nuke.Common.Tools.Git
+namespace Nuke.Common.Git
 {
     [PublicAPI]
     [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
-    public class GitRepositoryUrl
+    public class GitRepository
     {
         /// <summary>
-        /// Tries to parse a string to a valid <see cref="GitRepositoryUrl" />.
+        /// Tries to parse a string to a valid <see cref="GitRepository" />.
         /// </summary>
         [CanBeNull]
-        public static GitRepositoryUrl TryParse (string url)
+        public static GitRepository TryParse (string url)
         {
             var patterns =
                     new[]
@@ -31,7 +31,7 @@ namespace Nuke.Common.Tools.Git
             if (match == null)
                 return null;
 
-            return new GitRepositoryUrl
+            return new GitRepository
                    {
                        Endpoint = match.Groups["endpoint"].Value,
                        Owner = match.Groups["owner"].Value,
