@@ -43,16 +43,13 @@ namespace Nuke.ToolGenerator
         {
             var content = File.ReadAllText(file);
             var tool = JsonConvert.DeserializeObject<Tool>(content);
+
+            var directory = Path.Combine(Environment.CurrentDirectory, tool.Name);
+            Directory.CreateDirectory(directory);
             
             tool.DefinitionFile = file;
-            tool.GenerationFile = Path.Combine(
-                Environment.CurrentDirectory,
-                tool.Name,
-                Path.ChangeExtension(Path.GetFileNameWithoutExtension(file), "Generated.cs"));
-            tool.ReferenceFile = Path.Combine(
-                Environment.CurrentDirectory,
-                tool.Name,
-                Path.ChangeExtension(Path.GetFileNameWithoutExtension(file), "reference.txt"));
+            tool.GenerationFile = Path.Combine(directory, Path.ChangeExtension(Path.GetFileNameWithoutExtension(file), "Generated.cs"));
+            tool.ReferenceFile = Path.Combine(directory, Path.ChangeExtension(Path.GetFileNameWithoutExtension(file), "reference.txt"));
             
             if (tool.Task != null)
             {
